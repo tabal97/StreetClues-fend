@@ -29,7 +29,7 @@ class WaitingRoom extends Component {
         }
     }
     handleGameStart = () => {
-        this.props.navigation.navigate('PlayGame')
+        this.props.navigation.navigate('TabNavigator')
     }
 }
 const styles = StyleSheet.create({
