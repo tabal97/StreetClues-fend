@@ -26,18 +26,6 @@ class StreetView extends Component {
       </View>
     );
   }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between"
-  },
-  video: {
-    marginTop: 20,
-    maxHeight: 200,
-    width: 320
-  }
-});
+}
 
 export default StreetView;
