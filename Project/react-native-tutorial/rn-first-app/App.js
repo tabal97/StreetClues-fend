@@ -10,10 +10,14 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from "react-navigation-stack";
 
-const TabNavigator = createBottomTabNavigator({ Map, StreetView })
+const TabNavigator = createBottomTabNavigator({ StreetView, Map })
 
 const RootStack = createStackNavigator({
   Home, CreateGame, JoinGame, WaitingRoom, TabNavigator
+}, {
+  defaultNavigationOptions: {
+    headerLeft: null
+  }
 });
 
 const AppContainer = createAppContainer(RootStack)

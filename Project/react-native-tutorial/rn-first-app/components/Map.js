@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import MapView, { Marker, ProviderPropType } from "react-native-maps";
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -15,12 +15,14 @@ const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-let id = 0;
-function randomColor() {
+
+randomColor = () => {
     return `#${Math.floor(Math.random() * 16777215)
         .toString(16)
         .padStart(6, 0)}`;
 }
+
+
 export default class Map extends Component {
     state = {
         region: {
@@ -31,26 +33,11 @@ export default class Map extends Component {
         },
         markers: []
     };
-    onMapPress(e) {
-        console.log(this.state.markers);
-        this.setState({
-            markers: [
-                ...this.state.markers,
-                {
-                    coordinate: e.nativeEvent.coordinate,
-                    key: id++,
-                    color: randomColor()
-                }
-            ]
-        });
-    }
     render() {
+        const { markers } = this.state;
         return (
-<<<<<<< HEAD
-            <View>
-                <Text>Maps</Text>
-=======
             <View style={styles.container}>
+                <Button title="Submit" />
                 <MapView
                     provider={this.props.provider}
                     style={styles.mapStyle}
@@ -73,10 +60,23 @@ export default class Map extends Component {
                         <Text>Tap to create a marker of random color</Text>
                     </TouchableOpacity>
                 </View>
->>>>>>> a8803ea10b58d9de1bf5f130e97b535a35cc785d
             </View>
         );
     }
+
+    onMapPress(e) {
+
+        this.setState({
+            markers:
+                [{
+                    coordinate: e.nativeEvent.coordinate,
+                    key: 1,
+                    color: randomColor()
+                }]
+        });
+
+    }
+
 }
 Map.propTypes = {
     provider: ProviderPropType
