@@ -6,7 +6,8 @@ import JoinGame from "./components/JoinGame";
 import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
 import StreetView from "./components/StreetView";
-import CountDown from "react-native-countdown-component";
+import Timer from "./components/Timer";
+import RoundResult from "./components/RoundResult";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -19,19 +20,11 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
+    RoundResult,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
-        headerLeft: () => (
-          <CountDown
-            until={30}
-            onFinish={() => alert("Finished")}
-            digitStyle={{ backgroundColor: "#FFF" }}
-            digitTxtStyle={{ color: "#1CC625" }}
-            timeToShow={["S"]}
-            timeLabels={{ s: null }}
-          />
-        ),
+        headerLeft: () => <Timer />,
         headerRight: () => (
           <Button
             onPress={() => alert("Submitted!")}
