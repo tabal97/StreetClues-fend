@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import Home from "./components/Home";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import WaitingRoom from "./components/WaitingRoom";
-import PlayGame from "./components/PlayGame";
+import Map from "./components/Map";
+import StreetView from "./components/StreetView"
 import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from "react-navigation-stack";
 
+const TabNavigator = createBottomTabNavigator({ StreetView, Map })
+
 const RootStack = createStackNavigator({
-  Home, CreateGame, JoinGame, WaitingRoom, PlayGame
-})
+  Home, CreateGame, JoinGame, WaitingRoom,
+  TabNavigator: {
+    screen: TabNavigator, navigationOptions: {
+      headerLeft: null,
+      headerRight: () => (
+        <Button
+          onPress={() => alert('Submitted!')}
+          title="Submit"
+          color="#a65c98"
+        />
+      )
+    }
+  }
+}, {
+  defaultNavigationOptions: {
+    gesturesEnabled: false
+  }
+}
+);
+
 const AppContainer = createAppContainer(RootStack)
 
 class App extends Component {

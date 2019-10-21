@@ -26,7 +26,6 @@ class StreetView extends Component {
       </View>
     );
   }
-}
 
 const styles = StyleSheet.create({
   container: {
