@@ -64,6 +64,9 @@ class App extends Component {
     return true;
   }
 
+  handleSubmitButton = () => {
+    console.log(this.props.navigation)
+  }
 
 };
 

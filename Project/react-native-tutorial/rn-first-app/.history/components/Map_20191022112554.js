@@ -33,6 +33,7 @@ export default class Map extends Component {
   };
   render() {
     const { markers } = this.state;
+    console.log(this.props.navigation)
     return (
       <View style={styles.container}>
         <MapView

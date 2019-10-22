@@ -7,8 +7,7 @@ import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
-import RoundResult from "./components/RoundResult";
-import SubmitButton from "./components/SubmitButton"
+// import RoundResult from "./components/RoundResult";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -21,17 +20,18 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
-    RoundResult: {
-      screen: RoundResult,
-      navigationOptions: {
-        headerLeft: null
-      }
-    },
+    RoundResult,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
         headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />
+        headerRight: () => (
+          <Button
+            onPress={() => alert("Submitted!")}
+            title="Submit"
+            color="#a65c98"
+          />
+        )
       }
     }
   },
@@ -45,9 +45,6 @@ const RootStack = createStackNavigator(
 const AppContainer = createAppContainer(RootStack);
 
 class App extends Component {
-  state = {
-    markers: []
-  }
   render() {
     return <AppContainer />;
   }
@@ -63,7 +60,6 @@ class App extends Component {
   handleBackButton() {
     return true;
   }
-
 
 };
 

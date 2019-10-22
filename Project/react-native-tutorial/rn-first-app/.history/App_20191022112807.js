@@ -8,7 +8,6 @@ import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
-import SubmitButton from "./components/SubmitButton"
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -31,7 +30,16 @@ const RootStack = createStackNavigator(
       screen: TabNavigator,
       navigationOptions: {
         headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />
+        headerRight: () => (
+          <Button
+            onPress={(e) => {
+              App.handleSubmitButton()
+              alert("Submitted!")
+            }}
+            title="Submit"
+            color="#a65c98"
+          />
+        )
       }
     }
   },
@@ -64,6 +72,9 @@ class App extends Component {
     return true;
   }
 
+  handleSubmitButton = () => {
+    console.log(this.props.navigation)
+  }
 
 };
 

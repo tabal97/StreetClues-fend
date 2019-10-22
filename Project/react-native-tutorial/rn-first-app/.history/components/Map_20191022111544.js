@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -39,10 +40,7 @@ export default class Map extends Component {
           provider={this.props.provider}
           style={styles.mapStyle}
           initialRegion={this.state.region}
-          onPress={e => {
-            // console.log(this.props.navigation)
-            this.onMapPress(e)
-          }}
+          onPress={e => this.onMapPress(e)}
         >
           {this.state.markers.map(marker => (
             <Marker
@@ -74,14 +72,6 @@ export default class Map extends Component {
         }
       ]
     });
-    this.props.navigation.setParams({
-      markers: [
-        {
-          coordinate: e.nativeEvent.coordinate
-        }
-      ]
-    })
-
   }
 }
 Map.propTypes = {
