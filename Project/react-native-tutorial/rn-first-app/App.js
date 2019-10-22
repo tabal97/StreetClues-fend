@@ -7,7 +7,7 @@ import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
-import RoundResult from "./components/RoundResult";
+// import RoundResult from "./components/RoundResult";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -20,7 +20,7 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
-    RoundResult,
+    // RoundResult,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {

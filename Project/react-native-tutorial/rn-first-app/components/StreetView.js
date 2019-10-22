@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { WebView } from "react-native-webview";
+import BufferScreen from "./BufferScreen"
 
 class StreetView extends Component {
   render() {
@@ -19,10 +20,11 @@ class StreetView extends Component {
           source={{
             uri: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${
               coordinates[0]
-            },${coordinates[1]}`
+              },${coordinates[1]}`
           }}
           scalesPageToFit={true}
         />
+        <BufferScreen />
       </View>
     );
   }
