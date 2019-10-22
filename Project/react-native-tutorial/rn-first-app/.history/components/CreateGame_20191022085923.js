@@ -24,12 +24,10 @@ class CreateGame extends Component {
 
     handleCreateGame = () => {
         const { name } = this.state;
-        this.props.navigation.setParams({ currentRound: 1 })
         this.props.navigation.navigate('WaitingRoom', { name })
     }
     addPlayer = () => {
         //function for adding new player object into the 
-
     }
 
 }

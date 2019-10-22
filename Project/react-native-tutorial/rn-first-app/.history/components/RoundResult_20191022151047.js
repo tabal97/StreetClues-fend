@@ -21,8 +21,6 @@ class RoundResult extends Component {
         }]
     }
     render() {
-        const currentRound = this.props.navigation.getParam("currentRound");
-        console.log(currentRound, "current Round")
         const { targetLocations } = this.state;
         console.log(this.props.screenProps.currentRound)
         const latitude = this.props.navigation.getParam('latitude');
@@ -33,6 +31,10 @@ class RoundResult extends Component {
                 <Button title="Next Round" onPress={this.handlePress} />
             </View>
         );
+    }
+    componentDidMount() {
+        const currentRound = this.props.navigation.getParam("currentRound");
+        this.setState({ currentRound })
     }
     componentWillUnmount() {
 

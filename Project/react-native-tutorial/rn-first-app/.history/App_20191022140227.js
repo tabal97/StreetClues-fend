@@ -49,9 +49,8 @@ class App extends Component {
     currentRound: 1
   }
   render() {
-    const { currentRound } = this.state;
-    const { incrRound } = this;
-    return <AppContainer screenProps={{ currentRound, incrRound }} />;
+    const { currentRound } = this.state
+    return <AppContainer screenProps={currentRound} />;
   }
 
   componentDidMount() {
@@ -66,12 +65,7 @@ class App extends Component {
   handleBackButton() {
     return true;
   }
-  incrRound = () => {
-    this.setState(currState => {
-      const { currentRound } = currState;
-      return { currentRound: currentRound++ }
-    })
-  }
+
 
 };
 

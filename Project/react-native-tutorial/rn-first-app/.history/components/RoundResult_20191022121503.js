@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native'
+import { View, Text } from 'react-native'
 
 class RoundResult extends Component {
     state = {
@@ -21,24 +21,14 @@ class RoundResult extends Component {
         }]
     }
     render() {
-        const currentRound = this.props.navigation.getParam("currentRound");
-        console.log(currentRound, "current Round")
         const { targetLocations } = this.state;
-        console.log(this.props.screenProps.currentRound)
         const latitude = this.props.navigation.getParam('latitude');
         const longitude = this.props.navigation.getParam('longitude');
         return (
             <View>
                 <Text>{`Latitude: ${latitude}, Longitude: ${longitude}`}</Text>
-                <Button title="Next Round" onPress={this.handlePress} />
             </View>
         );
-    }
-    componentWillUnmount() {
-
-    }
-    handlePress = () => {
-        this.props.screenProps.currentRound++
     }
 }
 

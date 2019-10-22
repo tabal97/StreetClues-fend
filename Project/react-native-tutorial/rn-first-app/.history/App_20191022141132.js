@@ -69,7 +69,7 @@ class App extends Component {
   incrRound = () => {
     this.setState(currState => {
       const { currentRound } = currState;
-      return { currentRound: currentRound++ }
+      return { currentRound: ++currentRound }
     })
   }
 
