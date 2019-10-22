@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Button } from "react-native";
+import { StyleSheet, Button, BackHandler } from "react-native";
 import Home from "./components/Home";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
@@ -48,14 +48,19 @@ class App extends Component {
   render() {
     return <AppContainer />;
   }
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
-});
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    return true;
+  }
+
+};
 
 export default App;
