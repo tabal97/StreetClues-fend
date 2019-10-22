@@ -29,7 +29,7 @@ class Timer extends React.Component {
   }
   handleFinish = () => {
     console.log(this.props, "timer");
-    this.props.navigation.navigate("RoundResult");
+    // this.props.navigation.navigate("RoundResult");
   };
 }
 

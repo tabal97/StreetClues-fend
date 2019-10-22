@@ -8,7 +8,6 @@ import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
-import SubmitButton from "./components/SubmitButton"
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -31,7 +30,16 @@ const RootStack = createStackNavigator(
       screen: TabNavigator,
       navigationOptions: {
         headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />
+        headerRight: () => (
+          <Button
+            onPress={() => {
+              checkProps();
+              alert("Submitted!")
+            }}
+            title="Submit"
+            color="#a65c98"
+          />
+        )
       }
     }
   },
@@ -45,13 +53,8 @@ const RootStack = createStackNavigator(
 const AppContainer = createAppContainer(RootStack);
 
 class App extends Component {
-  state = {
-    currentRound: 1
-  }
   render() {
-    const { currentRound } = this.state;
-    const { incrRound } = this;
-    return <AppContainer screenProps={{ currentRound, incrRound }} />;
+    return <AppContainer />;
   }
 
   componentDidMount() {
@@ -62,15 +65,8 @@ class App extends Component {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
 
-
   handleBackButton() {
     return true;
-  }
-  incrRound = () => {
-    this.setState(currState => {
-      const { currentRound } = currState;
-      return { currentRound: currentRound++ }
-    })
   }
 
 };

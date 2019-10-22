@@ -74,14 +74,6 @@ export default class Map extends Component {
         }
       ]
     });
-    this.props.navigation.setParams({
-      markers: [
-        {
-          coordinate: e.nativeEvent.coordinate
-        }
-      ]
-    })
-
   }
 }
 Map.propTypes = {

@@ -32,6 +32,7 @@ class CreateGame extends Component {
     this.setState({ name: e });
   };
 
+
   handleCreateGame = () => {
     const { name } = this.state;
     const pin = this.props.navigation.getParam("pin");

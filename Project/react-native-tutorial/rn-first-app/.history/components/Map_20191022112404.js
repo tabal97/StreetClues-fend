@@ -33,6 +33,7 @@ export default class Map extends Component {
   };
   render() {
     const { markers } = this.state;
+
     return (
       <View style={styles.container}>
         <MapView
@@ -77,11 +78,12 @@ export default class Map extends Component {
     this.props.navigation.setParams({
       markers: [
         {
-          coordinate: e.nativeEvent.coordinate
+          coordinate: e.nativeEvent.coordinate,
+          key: 1,
+          color: randomColor()
         }
       ]
     })
-
   }
 }
 Map.propTypes = {

@@ -10,7 +10,7 @@ class Timer extends React.Component {
   render() {
     const { timeStart } = this.state;
     return (
-      timeStart && <CountDown
+      <CountDown
         until={30}
         onFinish={this.handleFinish}
         digitStyle={{ backgroundColor: "#FFF" }}
@@ -29,7 +29,7 @@ class Timer extends React.Component {
   }
   handleFinish = () => {
     console.log(this.props, "timer");
-    this.props.navigation.navigate("RoundResult");
+    // this.props.navigation.navigate("RoundResult");
   };
 }
 

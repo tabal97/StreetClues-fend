@@ -33,6 +33,7 @@ export default class Map extends Component {
   };
   render() {
     const { markers } = this.state;
+
     return (
       <View style={styles.container}>
         <MapView
@@ -65,7 +66,7 @@ export default class Map extends Component {
   }
 
   onMapPress(e) {
-    this.setState({
+    this.props.navigation.setParams({
       markers: [
         {
           coordinate: e.nativeEvent.coordinate,
@@ -74,14 +75,7 @@ export default class Map extends Component {
         }
       ]
     });
-    this.props.navigation.setParams({
-      markers: [
-        {
-          coordinate: e.nativeEvent.coordinate
-        }
-      ]
-    })
-
+    this.props.navigation.setParams(markers)
   }
 }
 Map.propTypes = {

@@ -11,7 +11,7 @@ class Timer extends React.Component {
     const { timeStart } = this.state;
     return (
       timeStart && <CountDown
-        until={30}
+        until={100}
         onFinish={this.handleFinish}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "#1CC625" }}
