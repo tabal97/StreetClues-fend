@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Button } from "react-native";
+import { StyleSheet, Button, BackHandler } from "react-native";
 import Home from "./components/Home";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
@@ -7,7 +7,7 @@ import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
-import RoundResult from "./components/RoundResult";
+// import RoundResult from "./components/RoundResult";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -20,7 +20,7 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
-    RoundResult,
+    // RoundResult,
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
@@ -48,14 +48,19 @@ class App extends Component {
   render() {
     return <AppContainer />;
   }
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
   }
-});
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+
+  handleBackButton() {
+    return true;
+  }
+
+};
 
 export default App;
