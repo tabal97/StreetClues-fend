@@ -83,15 +83,19 @@ class WaitingRoom extends Component {
   }
   handleGameStart = initialStart => {
     const pin = this.props.navigation.getParam("pin");
-const name = this.props.navigation.getParam("name");
-const targetLocation = this.props.navigation.getParam("targetLocation")
+    const name = this.props.navigation.getParam("name");
+    const targetLocation = this.props.navigation.getParam("targetLocation");
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/start_game", { pin: pin })
         .then(({ data }) => {})
         .catch(console.log);
     } else {
-       this.props.navigation.navigate("TabNavigator", { name, pin, targetLocation });
+      this.props.navigation.navigate("TabNavigator", {
+        name,
+        pin,
+        targetLocation
+      });
     }
   };
 }
