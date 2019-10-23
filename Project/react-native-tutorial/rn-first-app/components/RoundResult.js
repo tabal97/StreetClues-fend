@@ -26,33 +26,32 @@ class RoundResult extends Component {
   }
 
   render() {
-    // const { targetLocations, currentRound } = this.state;
-    // const targetLatitude = targetLocations[currentRound][0];
-    // const targetLongitude = targetLocations[currentRound][1];
     const latitude = this.props.navigation.getParam("latitude");
     const longitude = this.props.navigation.getParam("longitude");
+    const targetLatitude = this.props.navigation.getParam("targetLatitude");
+    const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
-    // console.log(this.props.navigation)
+    const nextLat = this.props.navigation.getParam("nextLat");
+    const nextLong = this.props.navigation.getParam("nextLong");
+    const score = this.props.navigation.getParam("score");
+
     return (
       <View>
-        {/* <Text>{`Name: ${name}, Latitude: ${latitude}, Longitude: ${longitude},Target Latitude: ${targetLatitude}, Target Longitude: ${targetLongitude}`}</Text> */}
+        <Text>{`Name: ${name}, Latitude: ${latitude}, Longitude: ${longitude},Target Latitude: ${targetLatitude}, Target Longitude: ${targetLongitude}`}</Text>
         <Button title="Next Round" onPress={() => this.handleNextRound(true)} />
       </View>
     );
   }
 
-  componentDidMount() {
-    // axios post updateRound(); this will respond with an object
-    //containing an array of all the target locations and adding one to the currentRound value
-    // this.setState({currentRound})
-  }
+  componentDidMount() {}
   handleNextRound = initialStart => {
     // const { currentRound, targetLocations } = this.state;
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
     // const targetLocation = targetLocations[3];
     // console.log(targetLocation);
-
+    const nextLat = this.props.navigation.getParam("nextLat");
+    const nextLong = this.props.navigation.getParam("nextLong");
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/next_round", { pin: pin })
@@ -62,7 +61,7 @@ class RoundResult extends Component {
       this.props.navigation.push("TabNavigator", {
         name,
         pin,
-        targetLocation: [40.7156726, -73.7387184]
+        targetLocation: [nextLat, nextLong]
       });
     }
   };
