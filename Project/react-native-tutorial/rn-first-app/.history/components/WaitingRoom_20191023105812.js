@@ -81,10 +81,9 @@ class WaitingRoom extends Component {
   handleGameStart = () => {
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
-    const targetLocation = this.props.navigation.getParam("targetLocation")
     console.log(name, "name")
     console.log(pin, "pin")
-    this.props.navigation.navigate("TabNavigator", { name, pin, targetLocation });
+    this.props.navigation.navigate("TabNavigator", { name, pin });
   };
 }
 const styles = StyleSheet.create({

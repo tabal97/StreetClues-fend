@@ -84,7 +84,7 @@ class WaitingRoom extends Component {
     const targetLocation = this.props.navigation.getParam("targetLocation")
     console.log(name, "name")
     console.log(pin, "pin")
-    this.props.navigation.navigate("TabNavigator", { name, pin, targetLocation });
+    this.props.navigation.navigate("TabNavigator", { name, pin });
   };
 }
 const styles = StyleSheet.create({

@@ -21,21 +21,21 @@ class StreetView extends Component {
           justifyContent: "center"
         }}
       >
-        {!isLoading && <WebView
+        <WebView
           source={{
             uri: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${
               coordinates[0]
               },${coordinates[1]}`
           }}
           scalesPageToFit={true}
-        />}
+        />
         <BufferScreen />
       </View>
     );
   }
   componentDidMount() {
     const targetLocation = this.props.navigation.getParam("targetLocation");
-    this.setState({ coordinates: targetLocation, isLoading: false })
+    this.setState({ coordinates: targetLocation })
   }
 }
 

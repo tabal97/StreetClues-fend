@@ -38,11 +38,12 @@ class CreateGame extends Component {
     handleCreateGame = () => {
         const { name } = this.state;
         const pin = this.props.navigation.getParam("pin");
+        console.log('hello')
         // this.props.navigation.setParams({ params: { currentRound: 1 }, key: "currentRound" });
         axios
             .post("http://192.168.230.176:5000/add_player", { name, pin })
             .then(({ data }) => {
-                this.props.navigation.navigate("WaitingRoom", { name, pin, targetLocation: data.locations });
+                this.props.navigation.navigate("WaitingRoom", { name, pin });
             });
 
         //axios request to add the host goes here

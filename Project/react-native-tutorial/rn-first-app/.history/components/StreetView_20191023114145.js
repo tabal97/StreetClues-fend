@@ -6,11 +6,11 @@ import BufferScreen from "./BufferScreen"
 class StreetView extends Component {
   state = {
     coordinates: [],
-    isLoading: true
+    isLoading
   }
   render() {
-    // coordinates = [-30.7229747, 25.0958533];
-    const { coordinates, isLoading } = this.state
+    coordinates = [-30.7229747, 25.0958533];
+    const { coordinates } = this.state
     return (
       <View
         style={{
@@ -21,21 +21,21 @@ class StreetView extends Component {
           justifyContent: "center"
         }}
       >
-        {!isLoading && <WebView
+        <WebView
           source={{
             uri: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${
               coordinates[0]
               },${coordinates[1]}`
           }}
           scalesPageToFit={true}
-        />}
+        />
         <BufferScreen />
       </View>
     );
   }
   componentDidMount() {
     const targetLocation = this.props.navigation.getParam("targetLocation");
-    this.setState({ coordinates: targetLocation, isLoading: false })
+    this.setState({ coordinates: targetLocation })
   }
 }
 

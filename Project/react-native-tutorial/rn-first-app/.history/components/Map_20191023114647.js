@@ -84,7 +84,10 @@ export default class Map extends Component {
     // console.log(this.props.navigation.state, 'hello')
     this.props.navigation.setParams({
       coordinate: e.nativeEvent.coordinate
-    })
+    }
+
+
+    )
 
   }
 }

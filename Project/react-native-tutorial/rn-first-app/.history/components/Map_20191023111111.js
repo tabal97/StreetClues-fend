@@ -40,7 +40,7 @@ export default class Map extends Component {
           style={styles.mapStyle}
           initialRegion={this.state.region}
           onPress={e => {
-            // console.log(this.props.navigation)
+            console.log(this.props.navigation)
             this.onMapPress(e)
           }}
         >
@@ -83,7 +83,13 @@ export default class Map extends Component {
 
     // console.log(this.props.navigation.state, 'hello')
     this.props.navigation.setParams({
-      coordinate: e.nativeEvent.coordinate
+      params: {
+        markers: [
+          {
+            coordinate: e.nativeEvent.coordinate
+          }
+        ]
+      }, key: "marker"
     })
 
   }
