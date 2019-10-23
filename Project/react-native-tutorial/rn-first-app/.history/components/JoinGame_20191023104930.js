@@ -50,10 +50,10 @@ class JoinGame extends Component {
         pin: this.state.enteredPin
       })
       .then(({ data }) => {
+        console.log("hello");
         this.props.navigation.navigate("WaitingRoom", {
           name: this.state.name,
-          pin: this.state.enteredPin,
-          targetLocation: data.locations
+          pin: this.state.enteredPin
         });
       });
   };

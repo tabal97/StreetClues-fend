@@ -35,7 +35,7 @@ class StreetView extends Component {
   }
   componentDidMount() {
     const targetLocation = this.props.navigation.getParam("targetLocation");
-    this.setState({ coordinates: targetLocation, isLoading: false })
+    this.setState({ coordinates: targetLocation })
   }
 }
 

@@ -10,7 +10,7 @@ class SubmitButton extends Component {
     }
 
     handleSubmit = (e) => {
-        const { latitude, longitude } = this.props.navigation.state.routes[1].params.coordinate
+        const { latitude, longitude } = this.props.navigation.state.routes[1].params.params.markers[0].coordinate
         const name = this.props.navigation.getParam("name")
         const pin = this.props.navigation.getParam("pin")
         // const markers = this.props.navigation.getParam("markers")

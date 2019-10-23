@@ -42,7 +42,7 @@ class CreateGame extends Component {
         axios
             .post("http://192.168.230.176:5000/add_player", { name, pin })
             .then(({ data }) => {
-                this.props.navigation.navigate("WaitingRoom", { name, pin, targetLocation: data.locations });
+                this.props.navigation.navigate("WaitingRoom", { name, pin, targetLocation: data });
             });
 
         //axios request to add the host goes here

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import axios from "axios";
-import { withNavigation } from "react-navigation";
 
 class CreateGame extends Component {
     state = {
@@ -38,11 +37,11 @@ class CreateGame extends Component {
     handleCreateGame = () => {
         const { name } = this.state;
         const pin = this.props.navigation.getParam("pin");
-        // this.props.navigation.setParams({ params: { currentRound: 1 }, key: "currentRound" });
+        this.props.navigation.setParams({ currentRound: 1 });
         axios
             .post("http://192.168.230.176:5000/add_player", { name, pin })
             .then(({ data }) => {
-                this.props.navigation.navigate("WaitingRoom", { name, pin, targetLocation: data.locations });
+                this.props.navigation.navigate("WaitingRoom", { name, pin });
             });
 
         //axios request to add the host goes here
@@ -81,4 +80,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(CreateGame);
+export default CreateGame;

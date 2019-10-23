@@ -26,9 +26,6 @@ class WaitingRoom extends Component {
         // this.handleMessage(data.name, data.message);
         this.handlePlayerJoin(data.name);
       });
-      this.channel.bind("startGame", data => {
-        this.handleGameStart();
-      });
     });
   }
 
@@ -60,7 +57,7 @@ class WaitingRoom extends Component {
             );
           })}
         </View>
-        <Button title="Start" onPress={() => this.handleGameStart(true)} />
+        <Button title="Start" onPress={this.handleGameStart} />
       </View>
     );
   }
@@ -81,18 +78,8 @@ class WaitingRoom extends Component {
       this.setState({ users });
     }
   }
-  handleGameStart = initialStart => {
-    const pin = this.props.navigation.getParam("pin");
-const name = this.props.navigation.getParam("name");
-const targetLocation = this.props.navigation.getParam("targetLocation")
-    if (initialStart) {
-      axios
-        .post("http://192.168.230.176:5000/start_game", { pin: pin })
-        .then(({ data }) => {})
-        .catch(console.log);
-    } else {
-       this.props.navigation.navigate("TabNavigator", { name, pin, targetLocation });
-    }
+  handleGameStart = () => {
+    this.props.navigation.navigate("TabNavigator");
   };
 }
 const styles = StyleSheet.create({

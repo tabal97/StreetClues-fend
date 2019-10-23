@@ -63,13 +63,7 @@ export default class Map extends Component {
       </View>
     );
   }
-  componentDidMount() {
-    const name = this.props.navigation.getParam("name");
-    const pin = this.props.navigation.getParam("pin");
-    console.log(name, "name");
-    console.log(pin, "pin");
-    this.setState({ name, pin })
-  }
+
   onMapPress(e) {
     this.setState({
       markers: [
@@ -80,10 +74,15 @@ export default class Map extends Component {
         }
       ]
     });
-
-    // console.log(this.props.navigation.state, 'hello')
+    console.log(this.props.navigation.state, 'hello')
     this.props.navigation.setParams({
-      coordinate: e.nativeEvent.coordinate
+      params: {
+        markers: [
+          {
+            coordinate: e.nativeEvent.coordinate
+          }
+        ]
+      }, key: "marker"
     })
 
   }
