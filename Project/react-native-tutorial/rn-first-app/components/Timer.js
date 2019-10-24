@@ -9,10 +9,10 @@ class Timer extends React.Component {
 
   render() {
     const { timeStart } = this.state;
+
     return (
       timeStart && <CountDown
         until={30}
-        onFinish={this.handleFinish}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "#1CC625" }}
         timeToShow={["S"]}
@@ -23,13 +23,16 @@ class Timer extends React.Component {
   componentDidMount() {
     window.setTimeout(this.startTimer, 5000)
   }
-  startTimer = () => {
+  componentDidUpdate() {
+    const resumeTimerProp = this.props.navigation.getParam("resumeTimer")
 
+    if (resumeTimerProp) {
+      console.log("submitted...")
+    }
+  }
+  startTimer = () => {
     this.setState({ timeStart: true })
   }
-  handleFinish = () => {
-    this.props.navigation.navigate("RoundResult");
-  };
 }
 
 export default withNavigation(Timer);
