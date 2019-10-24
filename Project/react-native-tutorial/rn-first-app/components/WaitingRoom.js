@@ -83,6 +83,7 @@ class WaitingRoom extends Component {
   handleGameStart = initialStart => {
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
+    const host = this.props.navigation.getParam("host");
     const targetLocation = this.props.navigation.getParam("targetLocation");
     if (initialStart) {
       axios
@@ -93,7 +94,8 @@ class WaitingRoom extends Component {
       this.props.navigation.navigate("TabNavigator", {
         name,
         pin,
-        targetLocation
+        targetLocation,
+        host
       });
     }
   };

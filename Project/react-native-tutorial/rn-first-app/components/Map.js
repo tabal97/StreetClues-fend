@@ -66,8 +66,6 @@ export default class Map extends Component {
   componentDidMount() {
     const name = this.props.navigation.getParam("name");
     const pin = this.props.navigation.getParam("pin");
-    console.log(name, "name");
-    console.log(pin, "pin");
     this.setState({ name, pin })
   }
   onMapPress(e) {
