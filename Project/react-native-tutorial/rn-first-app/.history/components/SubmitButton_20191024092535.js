@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
 import { Button } from "react-native";
 import axios from "axios";
-import * as util from "../utils/ScoreCalculator"
 
 class SubmitButton extends Component {
   render() {
@@ -24,10 +23,10 @@ class SubmitButton extends Component {
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
 
-    const score = util.calculateScore(latitude, longitude, targetLatitude, targetLongitude)
+    let score = 50;
     //TODO hook this up to the calculation
 
-    console.log(name, pin, score);
+    console.log(name, pin, latitude, longitude);
 
     axios
       .post("http://192.168.230.176:5000/update_score", {

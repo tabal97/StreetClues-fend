@@ -27,7 +27,7 @@ class SubmitButton extends Component {
     const score = util.calculateScore(latitude, longitude, targetLatitude, targetLongitude)
     //TODO hook this up to the calculation
 
-    console.log(name, pin, score);
+    console.log(name, pin, latitude, longitude);
 
     axios
       .post("http://192.168.230.176:5000/update_score", {

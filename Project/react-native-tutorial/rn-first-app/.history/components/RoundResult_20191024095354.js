@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
 
@@ -34,11 +34,12 @@ class RoundResult extends Component {
     const score = this.props.navigation.getParam("score");
 
     return (
-      <View style={styles.text}>
+      <View>
         <Text>{`Name: ${name}`} </Text>
         <Text>{`Your Guess: Latitude: ${latitude},Longitude ${longitude}`} </Text>
         <Text>{`Actual Answer: Latitude: ${targetLatitude},Longitude ${targetLongitude}`} </Text>
         <Text>{`Round Score: ${score}`} </Text>
+        <Text>{`Name: ${name}`} </Text>
         <Button title="Next Round" onPress={() => this.handleNextRound(true)} />
       </View>
     );
@@ -67,11 +68,5 @@ class RoundResult extends Component {
     }
   };
 }
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 35,
-    padding: 20,
-    backgroundColor: "skyblue"
-  }
-})
+
 export default RoundResult;
