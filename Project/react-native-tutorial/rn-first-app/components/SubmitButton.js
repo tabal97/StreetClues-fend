@@ -24,6 +24,7 @@ class SubmitButton extends Component {
 
       const name = this.props.navigation.getParam("name");
       const pin = this.props.navigation.getParam("pin");
+      const host = this.props.navigation.getParam("host");
 
       const targetLatitude = targetLocation[0];
       const targetLongitude = targetLocation[1];
@@ -40,6 +41,7 @@ class SubmitButton extends Component {
             longitude: "Nothing",
             name,
             pin,
+            host,
             nextLat: data.locations[0],
             nextLong: data.locations[1],
             score: 0,
@@ -58,6 +60,7 @@ class SubmitButton extends Component {
 
     const name = this.props.navigation.getParam("name");
     const pin = this.props.navigation.getParam("pin");
+    const host = this.props.navigation.getParam("host");
 
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
@@ -82,6 +85,7 @@ class SubmitButton extends Component {
           longitude,
           name,
           pin,
+          host,
           nextLat: data.locations[0],
           nextLong: data.locations[1],
           score,

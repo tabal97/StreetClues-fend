@@ -9,7 +9,8 @@ class RoundResult extends Component {
     super(props);
 
     this.state = {
-      currentRound: 0
+      currentRound: 0,
+      host: null
     };
 
     this.pusher = new Pusher("e997856aae5ff49795fd", {
@@ -33,16 +34,23 @@ class RoundResult extends Component {
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
     const score = this.props.navigation.getParam("score");
-    const { renderButton } = this.state;
+    const { host } = this.state
     return (
       <View style={styles.text}>
         <Text>{`Name: ${name}`} </Text>
         <Text>{`Your Guess: Latitude: ${latitude},Longitude ${longitude}`} </Text>
         <Text>{`Actual Answer: Latitude: ${targetLatitude},Longitude ${targetLongitude}`} </Text>
         <Text>{`Round Score: ${score}`} </Text>
-        <Button title="Next Round" onPress={() => this.handleNextRound(true)} />
+        <Text>{`Host: ${host}`} </Text>
+        {host && <Button title="Next Round" onPress={() => this.handleNextRound(true)} />}
       </View>
     );
+  }
+  componentDidMount() {
+    const host = this.props.navigation.getParam("host");
+    if (host) {
+      this.setState({ host })
+    }
   }
 
   handleNextRound = initialStart => {
