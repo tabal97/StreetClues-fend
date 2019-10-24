@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
+import CountDown from "react-native-countdown-component";
 
 class RoundResult extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class RoundResult extends Component {
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
     const score = this.props.navigation.getParam("score");
-
+    const { renderButton } = this.state;
     return (
       <View style={styles.text}>
         <Text>{`Name: ${name}`} </Text>
@@ -44,7 +45,6 @@ class RoundResult extends Component {
     );
   }
 
-  componentDidMount() { }
   handleNextRound = initialStart => {
     // const { currentRound, targetLocations } = this.state;
     const pin = this.props.navigation.getParam("pin");

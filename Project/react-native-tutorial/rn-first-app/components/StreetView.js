@@ -27,7 +27,7 @@ class StreetView extends Component {
             source={{
               uri: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${
                 coordinates[0]
-              },${coordinates[1]}`
+                },${coordinates[1]}`
             }}
             scalesPageToFit={true}
           />
@@ -41,6 +41,7 @@ class StreetView extends Component {
     const targetLocation = this.props.navigation.getParam("targetLocation");
     this.setState({ coordinates: targetLocation, isLoading: false });
   }
+
 }
 
 export default StreetView;

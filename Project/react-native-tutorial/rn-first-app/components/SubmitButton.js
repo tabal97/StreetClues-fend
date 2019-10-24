@@ -5,16 +5,54 @@ import axios from "axios";
 import * as util from "../utils/ScoreCalculator"
 
 class SubmitButton extends Component {
+  state = {
+    submitted: false
+  }
+
   render() {
     return <Button onPress={this.handleSubmit} title="submit" />;
   }
+  componentDidMount() {
+    window.setTimeout(this.handleTimeOut, 35000)
+  }
 
-  handleSubmit = e => {
-    const {
-      latitude,
-      longitude
-    } = this.props.navigation.state.routes[1].params.coordinate;
+  handleTimeOut = () => {
+    const { submitted } = this.state;
+    if (!submitted) {
+      const targetLocation = this.props.navigation.state.routes[1].params
+        .targetLocation;
 
+      const name = this.props.navigation.getParam("name");
+      const pin = this.props.navigation.getParam("pin");
+
+      const targetLatitude = targetLocation[0];
+      const targetLongitude = targetLocation[1];
+
+      axios
+        .post("http://192.168.230.176:5000/update_score", {
+          pin: pin,
+          name: name,
+          score: 0
+        })
+        .then(({ data }) => {
+          this.props.navigation.navigate("RoundResult", {
+            latitude: "Nothing",
+            longitude: "Nothing",
+            name,
+            pin,
+            nextLat: data.locations[0],
+            nextLong: data.locations[1],
+            score: 0,
+            nextRound: data.nextRound,
+            targetLatitude,
+            targetLongitude
+          });
+        })
+        .catch(console.log);
+    }
+  }
+  handleSubmit = () => {
+    this.setState({ submitted: true })
     const targetLocation = this.props.navigation.state.routes[1].params
       .targetLocation;
 
@@ -24,10 +62,12 @@ class SubmitButton extends Component {
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
 
-    const score = util.calculateScore(latitude, longitude, targetLatitude, targetLongitude)
-    //TODO hook this up to the calculation
+    const {
+      latitude,
+      longitude
+    } = this.props.navigation.state.routes[1].params.coordinate;
 
-    console.log(name, pin, score);
+    const score = util.calculateScore(latitude, longitude, targetLatitude, targetLongitude)
 
     axios
       .post("http://192.168.230.176:5000/update_score", {
@@ -36,8 +76,6 @@ class SubmitButton extends Component {
         score: score
       })
       .then(({ data }) => {
-        // let message = "Waiting for other answers...";
-        // if (data.msg === "End of Round") message = "End of Round";
         this.props.navigation.navigate("RoundResult", {
           latitude,
           longitude,
@@ -52,6 +90,7 @@ class SubmitButton extends Component {
         });
       })
       .catch(console.log);
+
   };
 }
 
