@@ -76,6 +76,7 @@ class SubmitButton extends Component {
         score: score
       })
       .then(({ data }) => {
+        console.log(data)
         this.props.navigation.navigate("RoundResult", {
           latitude,
           longitude,
