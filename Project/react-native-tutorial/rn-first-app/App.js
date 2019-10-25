@@ -21,30 +21,34 @@ const RootStack = createStackNavigator(
     Home,
     CreateGame,
     JoinGame,
-    WaitingRoom,
+    WaitingRoom: {
+      screen: WaitingRoom,
+      navigationOptions: {
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    },
     EndGameScreen: {
       screen: EndGameScreen,
       navigationOptions: {
-        headerLeft: null
+        headerLeft: null,
+        gesturesEnabled: false
       }
     },
     RoundResult: {
       screen: RoundResult,
       navigationOptions: {
-        headerLeft: null
+        headerLeft: null,
+        gesturesEnabled: false
       }
     },
     TabNavigator: {
       screen: TabNavigator,
       navigationOptions: {
         headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />
+        headerRight: () => <SubmitButton />,
+        gesturesEnabled: false
       }
-    }
-  },
-  {
-    defaultNavigationOptions: {
-      gesturesEnabled: false
     }
   }
 );
