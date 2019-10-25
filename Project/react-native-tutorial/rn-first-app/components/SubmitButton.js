@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
 import { Button } from "react-native";
 import axios from "axios";
-import * as util from "../utils/ScoreCalculator"
+import * as util from "../utils/ScoreCalculator";
 
 class SubmitButton extends Component {
   state = {
     submitted: false
-  }
+  };
 
   render() {
     return <Button onPress={this.handleSubmit} title="submit" />;
   }
   componentDidMount() {
-    window.setTimeout(this.handleTimeOut, 35000)
+    window.setTimeout(this.handleTimeOut, 35000);
   }
 
   handleTimeOut = () => {
@@ -52,9 +52,9 @@ class SubmitButton extends Component {
         })
         .catch(console.log);
     }
-  }
+  };
   handleSubmit = () => {
-    this.setState({ submitted: true })
+    this.setState({ submitted: true });
     const targetLocation = this.props.navigation.state.routes[1].params
       .targetLocation;
 
@@ -70,7 +70,12 @@ class SubmitButton extends Component {
       longitude
     } = this.props.navigation.state.routes[1].params.coordinate;
 
-    const score = util.calculateScore(latitude, longitude, targetLatitude, targetLongitude)
+    const score = util.calculateScore(
+      latitude,
+      longitude,
+      targetLatitude,
+      targetLongitude
+    );
 
     axios
       .post("http://192.168.230.176:5000/update_score", {
@@ -79,7 +84,7 @@ class SubmitButton extends Component {
         score: score
       })
       .then(({ data }) => {
-        console.log(data)
+        console.log(data);
         this.props.navigation.navigate("RoundResult", {
           latitude,
           longitude,
@@ -91,11 +96,11 @@ class SubmitButton extends Component {
           score,
           nextRound: data.nextRound,
           targetLatitude,
-          targetLongitude
+          targetLongitude,
+          endGame: data.endGame
         });
       })
       .catch(console.log);
-
   };
 }
 
