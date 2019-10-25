@@ -8,9 +8,12 @@ class EndGameScreen extends Component {
   constructor(props) {
     super(props);
 
+    const finalScores = this.props.navigation.getParam("finalScores");
+    console.log(finalScores);
     this.state = {
       currentRound: 0,
-      host: null
+      host: null,
+      finalScores: finalScores
     };
 
     this.pusher = new Pusher("e997856aae5ff49795fd", {
@@ -19,10 +22,11 @@ class EndGameScreen extends Component {
     });
 
     const pin = this.props.navigation.getParam("pin");
+
     this.channel = this.pusher.subscribe(pin);
     this.channel.bind("pusher:subscription_succeeded", () => {
-      this.channel.bind("nextRound", data => {
-        this.handleNextRound();
+      this.channel.bind("endGame", data => {
+        console.log("here");
       });
     });
   }
@@ -33,28 +37,40 @@ class EndGameScreen extends Component {
     // const targetLatitude = this.props.navigation.getParam("targetLatitude");
     // const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
+    // console.log("here");
     // const score = this.props.navigation.getParam("score");
     // const { host } = this.state;
     return (
       <View style={styles.text}>
         <Text>{`Name: Test`} </Text>
-
-        {/* <Text>{`Host: ${host}`} </Text> */}
-        {/* {host && (
-          <Button
-            title="Finish Game"
-            onPress={() => this.handleNextRound(true)}
-          />
-        )} */}
+        {this.state.finalScores.map(user => {
+          return <Text>{user}</Text>;
+        })}
       </View>
     );
   }
-  componentDidMount() {
-    const host = this.props.navigation.getParam("host");
-    if (host) {
-      this.setState({ host });
+
+  handleFinalResults = scores => {
+    let playerScoresArray = [];
+    for (let player in scores) {
+      playerScoresArray.push([player, scores[player]]);
     }
-  }
+
+    playerScoresArray = playerScoresArray.sort((a, b) => {
+      return b[1] - a[1];
+    });
+
+    playerScoresArray = playerScoresArray.map(x => {
+      let y = [];
+      y[0] = x[0] + ": " + x[1];
+
+      return y;
+    });
+
+    this.setState({ finalScores: playerScoresArray });
+  };
+
+  componentDidMount() {}
 }
 
 //   handleNextRound = initialStart => {
