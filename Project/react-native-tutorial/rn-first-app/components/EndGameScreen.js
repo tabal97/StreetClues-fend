@@ -49,11 +49,12 @@ class EndGameScreen extends Component {
       </View>
     );
   }
-    componentDidMount() {
-      const host = this.props.navigation.getParam("host");
-      if (host) {
-        this.setState({ host });
-      }
+  componentDidMount() {
+    const host = this.props.navigation.getParam("host");
+    if (host) {
+      this.setState({ host });
+    }
+  }
 }
 
 //   handleNextRound = initialStart => {
@@ -85,4 +86,5 @@ const styles = StyleSheet.create({
     backgroundColor: "skyblue"
   }
 });
+
 export default EndGameScreen;

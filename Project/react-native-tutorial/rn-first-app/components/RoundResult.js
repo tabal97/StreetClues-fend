@@ -25,6 +25,9 @@ class RoundResult extends Component {
       this.channel.bind("nextRound", data => {
         this.handleNextRound();
       });
+      this.channel.bind("endRound", data => {
+        this.setState({ everyoneAnswered: true });
+      });
     });
   }
 
@@ -35,7 +38,7 @@ class RoundResult extends Component {
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
     const score = this.props.navigation.getParam("score");
-    const { host } = this.state;
+    const { host, everyoneAnswered } = this.state;
     return (
       <View style={styles.text}>
         <MapResult
@@ -53,8 +56,8 @@ class RoundResult extends Component {
         </Text>
         <Text>{`Round Score: ${score}`} </Text>
         <Text>{`Host: ${host}`} </Text>
-        {host && (
-          /*everyoneAnswered*/ <Button
+        {host && everyoneAnswered && (
+          <Button
             title="Next Round"
             onPress={() => this.handleNextRound(true)}
           />
@@ -64,8 +67,12 @@ class RoundResult extends Component {
   }
   componentDidMount() {
     const host = this.props.navigation.getParam("host");
+    const everyoneAnswered = this.props.navigation.getParam("endRound");
+    console.log(host);
+    console.log(everyoneAnswered);
     if (host) {
       this.setState({ host });
+      this.setState({ everyoneAnswered });
     }
   }
 
@@ -77,7 +84,8 @@ class RoundResult extends Component {
     const nextLat = this.props.navigation.getParam("nextLat");
     const nextLong = this.props.navigation.getParam("nextLong");
     const endGame = this.props.navigation.getParam("endGame");
-    console.log(endGame);
+
+    this.setState({ everyoneAnswered: false });
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/next_round", { pin: pin })
