@@ -29,11 +29,10 @@ class Home extends Component {
     //API post new game instance with randomly generated pin
 
     let url = uri + "/create_game";
-    console.log(url);
+
     axios
       .get("http://192.168.230.176:5000/create_game")
       .then(({ data }) => {
-        console.log(data);
         this.setState({ pin: data.pin });
 
         this.props.navigation.navigate("CreateGame", { pin: data.pin });

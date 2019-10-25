@@ -16,6 +16,7 @@ class SubmitButton extends Component {
     window.setTimeout(this.handleTimeOut, 35000);
   }
 
+  //this needs to be done
   handleTimeOut = () => {
     const { submitted } = this.state;
     if (!submitted) {
@@ -84,7 +85,11 @@ class SubmitButton extends Component {
         score: score
       })
       .then(({ data }) => {
-        console.log(data);
+        let endRound = false;
+        if (data.msg === "End of Round" || data.msg === "End of Game") {
+          endRound = true;
+        }
+
         this.props.navigation.navigate("RoundResult", {
           latitude,
           longitude,
@@ -97,7 +102,8 @@ class SubmitButton extends Component {
           nextRound: data.nextRound,
           targetLatitude,
           targetLongitude,
-          endGame: data.endGame
+          endGame: data.endGame,
+          endRound: endRound
         });
       })
       .catch(console.log);
