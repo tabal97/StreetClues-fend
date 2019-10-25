@@ -27,6 +27,9 @@ class RoundResult extends Component {
       this.channel.bind("endRound", data => {
         this.setState({ everyoneAnswered: true });
       });
+      this.channel.bind("endGame", data => {
+        this.handleFinalResults(data.message);
+      });
     });
   }
 
@@ -80,25 +83,48 @@ class RoundResult extends Component {
     const endGame = this.props.navigation.getParam("endGame");
 
     this.setState({ everyoneAnswered: false });
+    finalScores = this.state.finalScores;
+    // console.log(finalScores);
+
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/next_round", { pin: pin })
         .then(({ data }) => {})
         .catch(console.log);
+    } else if (endGame) {
+      this.props.navigation.push("EndGameScreen", {
+        name,
+        pin,
+        finalScores
+      });
     } else {
-      if (endGame) {
-        this.props.navigation.push("EndGameScreen", {
-          name,
-          pin
-        });
-      } else {
-        this.props.navigation.push("TabNavigator", {
-          name,
-          pin,
-          targetLocation: [nextLat, nextLong]
-        });
-      }
+      this.props.navigation.push("TabNavigator", {
+        name,
+        pin,
+        targetLocation: [nextLat, nextLong]
+      });
     }
+  };
+
+  handleFinalResults = scores => {
+    let playerScoresArray = [];
+    for (let player in scores) {
+      playerScoresArray.push([player, scores[player]]);
+    }
+    // console.log(playerScoresArray);
+
+    playerScoresArray = playerScoresArray.sort((a, b) => {
+      return b[1] - a[1];
+    });
+
+    playerScoresArray = playerScoresArray.map(x => {
+      let y = "";
+      y = x[0] + ": " + x[1];
+
+      return y;
+    });
+
+    this.setState({ finalScores: playerScoresArray });
   };
 }
 const styles = StyleSheet.create({
