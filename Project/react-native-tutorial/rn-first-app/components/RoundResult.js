@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
 import CountDown from "react-native-countdown-component";
+import MapResult from "./MapResult.js";
 
 class RoundResult extends Component {
   constructor(props) {
@@ -37,6 +38,12 @@ class RoundResult extends Component {
     const { host } = this.state;
     return (
       <View style={styles.text}>
+        <MapResult
+          latitude={latitude}
+          longitude={longitude}
+          targetLatitude={targetLatitude}
+          targetLongitude={targetLongitude}
+        />
         <Text>{`Name: ${name}`} </Text>
         <Text>
           {`Your Guess: Latitude: ${latitude},Longitude ${longitude}`}{" "}
@@ -67,7 +74,6 @@ class RoundResult extends Component {
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
     // const targetLocation = targetLocations[3];
-    // console.log(targetLocation);
     const nextLat = this.props.navigation.getParam("nextLat");
     const nextLong = this.props.navigation.getParam("nextLong");
     const endGame = this.props.navigation.getParam("endGame");

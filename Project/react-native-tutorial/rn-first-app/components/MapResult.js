@@ -22,23 +22,11 @@ export default class MapResult extends Component {
       longitude: LONGITUDE,
       latitudeDelta: LATITUDE_DELTA,
       longitudeDelta: LONGITUDE_DELTA
-    },
-    markers: [
-      {
-        color: "#136148",
-        coordinate: {
-          latitude: 37.962804265661276,
-          longitude: -121.96355252406137
-        },
-        key: 2
-      }
-    ],
-    polylines: [],
-    isLoading: true
+    }
   };
   render() {
-    const { markers, isLoading } = this.state;
-    console.log(markers);
+    const { latitude, longitude, targetLatitude, targetLongitude } = this.props;
+    console.log(latitude, longitude, targetLatitude, targetLongitude);
     return (
       <View style={styles.container}>
         <MapView
@@ -46,41 +34,22 @@ export default class MapResult extends Component {
           style={styles.mapStyle}
           initialRegion={this.state.region}
         >
-          {!isLoading && (
-            <Polyline
-              coordinates={[markers[0].coordinate, markers[1].coordinate]}
-            />
-          )}
-          {this.state.markers.map(marker => (
-            <Marker
-              key={marker.key}
-              coordinate={marker.coordinate}
-              pinColor={marker.color}
-            />
-          ))}
+          <Polyline
+            coordinates={[
+              { latitude, longitude },
+              { latitude: targetLatitude, longitude: targetLongitude }
+            ]}
+          />
+          <Marker coordinate={{ latitude, longitude }} />
+          <Marker
+            coordinate={{
+              latitude: targetLatitude,
+              longitude: targetLongitude
+            }}
+          />
         </MapView>
       </View>
     );
-  }
-
-  componentDidMount() {
-    this.setState(currState => {
-      const newState = { ...currState };
-      return {
-        isLoading: false,
-        markers: [
-          ...newState.markers,
-          {
-            coordinate: {
-              latitude: 38.81207192203812,
-              longitude: -121.94116384957164
-            },
-            key: 1,
-            color: randomColor()
-          }
-        ]
-      };
-    });
   }
 }
 Map.propTypes = {
