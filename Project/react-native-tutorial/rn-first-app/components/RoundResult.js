@@ -54,7 +54,7 @@ class RoundResult extends Component {
         <Text>{`Round Score: ${score}`} </Text>
         <Text>{`Host: ${host}`} </Text>
         {host && (
-          <Button
+          /*everyoneAnswered*/ <Button
             title="Next Round"
             onPress={() => this.handleNextRound(true)}
           />
