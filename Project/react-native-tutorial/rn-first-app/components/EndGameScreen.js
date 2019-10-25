@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import Pusher from "pusher-js/react-native";
-import axios from "axios";
 import CountDown from "react-native-countdown-component";
 
 class EndGameScreen extends Component {
@@ -32,22 +31,20 @@ class EndGameScreen extends Component {
   }
 
   render() {
-    // const latitude = this.props.navigation.getParam("latitude");
-    // const longitude = this.props.navigation.getParam("longitude");
-    // const targetLatitude = this.props.navigation.getParam("targetLatitude");
-    // const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
-    // console.log("here");
-    // const score = this.props.navigation.getParam("score");
-    // const { host } = this.state;
     return (
       <View style={styles.text}>
         <Text>{`Name: Test`} </Text>
         {this.state.finalScores.map(user => {
           return <Text>{user}</Text>;
         })}
+        <Button title="Leave Game" onPress={this.handleLeaveGame} />
       </View>
     );
+  }
+
+  handleLeaveGame = () => {
+    this.props.navigation.push("Home")
   }
 
   handleFinalResults = scores => {
@@ -69,31 +66,7 @@ class EndGameScreen extends Component {
 
     this.setState({ finalScores: playerScoresArray });
   };
-
-  componentDidMount() {}
 }
-
-//   handleNextRound = initialStart => {
-//     // const { currentRound, targetLocations } = this.state;
-//     const pin = this.props.navigation.getParam("pin");
-//     const name = this.props.navigation.getParam("name");
-//     // const targetLocation = targetLocations[3];
-//     // console.log(targetLocation);
-//     const nextLat = this.props.navigation.getParam("nextLat");
-//     const nextLong = this.props.navigation.getParam("nextLong");
-//     if (initialStart) {
-//       axios
-//         .post("http://192.168.230.176:5000/next_round", { pin: pin })
-//         .then(({ data }) => {})
-//         .catch(console.log);
-//     } else {
-//       this.props.navigation.push("TabNavigator", {
-//         name,
-//         pin,
-//         targetLocation: [nextLat, nextLong]
-//       });
-//     }
-//   };
 
 const styles = StyleSheet.create({
   text: {
