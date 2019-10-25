@@ -6,17 +6,23 @@ import * as util from "../utils/ScoreCalculator";
 
 class SubmitButton extends Component {
   state = {
-    submitted: false
+    submitted: false,
+    disabled: true
   };
 
   render() {
-    return <Button onPress={this.handleSubmit} title="submit" />;
+    const { disabled } = this.state;
+    return <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />;
   }
   componentDidMount() {
     window.setTimeout(this.handleTimeOut, 45000)
+    window.setTimeout(this.enableButton, 5000)
   }
 
-  //this needs to be done
+  enableButton = () => {
+    this.setState({ disabled: false })
+  }
+
   handleTimeOut = () => {
     const { submitted } = this.state;
     if (!submitted) {
@@ -31,7 +37,7 @@ class SubmitButton extends Component {
       const targetLongitude = targetLocation[1];
 
       axios
-        .post("http://192.168.230.176:5000/update_score", {
+        .post("http://192.168.230.161:5000/update_score", {
           pin: pin,
           name: name,
           score: 0
@@ -79,7 +85,7 @@ class SubmitButton extends Component {
     );
 
     axios
-      .post("http://192.168.230.176:5000/update_score", {
+      .post("http://192.168.230.161:5000/update_score", {
         pin: pin,
         name: name,
         score: score
