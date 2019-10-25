@@ -20,5 +20,6 @@ exports.calculateScore = (lat, long, targetLat, targetLong) => {
     return d / 1000;
   };
   if (typeof lat !== "number" || typeof long !== "number") return 0;
-  else return 20000 - calcdistance(lat, long, targetLat, targetLong);
+  else
+    return 20015 - Math.round(calcdistance(lat, long, targetLat, targetLong));
 };
