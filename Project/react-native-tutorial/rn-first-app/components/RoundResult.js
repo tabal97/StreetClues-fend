@@ -76,17 +76,26 @@ class RoundResult extends Component {
     // const targetLocation = targetLocations[3];
     const nextLat = this.props.navigation.getParam("nextLat");
     const nextLong = this.props.navigation.getParam("nextLong");
+    const endGame = this.props.navigation.getParam("endGame");
+    console.log(endGame);
     if (initialStart) {
       axios
-        .post("http://192.168.230.161:5000/next_round", { pin: pin })
+        .post("http://192.168.230.176:5000/next_round", { pin: pin })
         .then(({ data }) => {})
         .catch(console.log);
     } else {
-      this.props.navigation.push("TabNavigator", {
-        name,
-        pin,
-        targetLocation: [nextLat, nextLong]
-      });
+      if (endGame) {
+        this.props.navigation.push("EndGameScreen", {
+          name,
+          pin
+        });
+      } else {
+        this.props.navigation.push("TabNavigator", {
+          name,
+          pin,
+          targetLocation: [nextLat, nextLong]
+        });
+      }
     }
   };
 }
