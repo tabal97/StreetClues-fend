@@ -18,7 +18,13 @@ const TabNavigator = createBottomTabNavigator({ StreetView, Map });
 
 const RootStack = createStackNavigator(
   {
-    Home,
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        headerLeft: null,
+        gesturesEnabled: false
+      }
+    },
     CreateGame,
     JoinGame,
     WaitingRoom: {
