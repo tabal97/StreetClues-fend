@@ -34,22 +34,31 @@ class RoundResult extends Component {
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
     const name = this.props.navigation.getParam("name");
     const score = this.props.navigation.getParam("score");
-    const { host } = this.state
+    const { host } = this.state;
     return (
       <View style={styles.text}>
         <Text>{`Name: ${name}`} </Text>
-        <Text>{`Your Guess: Latitude: ${latitude},Longitude ${longitude}`} </Text>
-        <Text>{`Actual Answer: Latitude: ${targetLatitude},Longitude ${targetLongitude}`} </Text>
+        <Text>
+          {`Your Guess: Latitude: ${latitude},Longitude ${longitude}`}{" "}
+        </Text>
+        <Text>
+          {`Actual Answer: Latitude: ${targetLatitude},Longitude ${targetLongitude}`}{" "}
+        </Text>
         <Text>{`Round Score: ${score}`} </Text>
         <Text>{`Host: ${host}`} </Text>
-        {host && <Button title="Next Round" onPress={() => this.handleNextRound(true)} />}
+        {host && (
+          <Button
+            title="Next Round"
+            onPress={() => this.handleNextRound(true)}
+          />
+        )}
       </View>
     );
   }
   componentDidMount() {
     const host = this.props.navigation.getParam("host");
     if (host) {
-      this.setState({ host })
+      this.setState({ host });
     }
   }
 
@@ -61,17 +70,26 @@ class RoundResult extends Component {
     // console.log(targetLocation);
     const nextLat = this.props.navigation.getParam("nextLat");
     const nextLong = this.props.navigation.getParam("nextLong");
+    const endGame = this.props.navigation.getParam("endGame");
+    console.log(endGame);
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/next_round", { pin: pin })
-        .then(({ data }) => { })
+        .then(({ data }) => {})
         .catch(console.log);
     } else {
-      this.props.navigation.push("TabNavigator", {
-        name,
-        pin,
-        targetLocation: [nextLat, nextLong]
-      });
+      if (endGame) {
+        this.props.navigation.push("EndGameScreen", {
+          name,
+          pin
+        });
+      } else {
+        this.props.navigation.push("TabNavigator", {
+          name,
+          pin,
+          targetLocation: [nextLat, nextLong]
+        });
+      }
     }
   };
 }
@@ -81,5 +99,5 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "skyblue"
   }
-})
+});
 export default RoundResult;

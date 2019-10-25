@@ -8,7 +8,8 @@ import Map from "./components/Map";
 import StreetView from "./components/StreetView";
 import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
-import SubmitButton from "./components/SubmitButton"
+import EndGameScreen from "./components/EndGameScreen";
+import SubmitButton from "./components/SubmitButton";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -21,6 +22,7 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
+    EndGameScreen,
     RoundResult: {
       screen: RoundResult,
       navigationOptions: {
@@ -47,7 +49,7 @@ const AppContainer = createAppContainer(RootStack);
 class App extends Component {
   state = {
     currentRound: 1
-  }
+  };
   render() {
     const { currentRound } = this.state;
     const { incrRound } = this;
@@ -55,13 +57,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackButton);
   }
-
 
   handleBackButton() {
     return true;
@@ -69,10 +70,9 @@ class App extends Component {
   incrRound = () => {
     this.setState(currState => {
       const { currentRound } = currState;
-      return { currentRound: currentRound++ }
-    })
-  }
-
-};
+      return { currentRound: currentRound++ };
+    });
+  };
+}
 
 export default App;
