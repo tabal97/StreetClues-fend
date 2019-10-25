@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MapView, { Marker, ProviderPropType, Polyline } from "react-native-maps";
 import { StyleSheet, View, Dimensions } from "react-native";
+import { getCenter } from "geolib";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -16,26 +17,38 @@ randomColor = () => {
 };
 
 export default class MapResult extends Component {
-  state = {
-    region: {
-      latitude: LATITUDE,
-      longitude: LONGITUDE,
-      latitudeDelta: LATITUDE_DELTA,
-      longitudeDelta: LONGITUDE_DELTA
-    }
-  };
-
   componentDidMount() {
     setTimeout(() => {
       this.map.fitToSuppliedMarkers(["guess", "target"], false);
     }, 1000);
   }
 
+  componentDidUpdate(prevProps) {
+    const propsChanged =
+      prevProps.latitude !== this.props.latitude ||
+      prevProps.longitude !== this.props.longitude ||
+      prevProps.targetLatitude !== this.props.targetLatitude ||
+      prevProps.targetLongitude !== this.props.targetLongitude;
+    if (propsChanged) {
+      setTimeout(() => {
+        this.map.fitToSuppliedMarkers(["guess", "target"], {
+          edgePadding: { top: 1, right: 1, bottom: 1, left: 1 },
+          animated: false
+        });
+      }, 1000);
+    }
+  }
+
   render() {
     const { latitude, longitude, targetLatitude, targetLongitude } = this.props;
-    const midLat = (latitude + parseFloat(targetLatitude)) / 2;
-    const midLong = (longitude + parseFloat(targetLongitude)) / 2;
-    console.log(midLat);
+    const midPoint = getCenter([
+      { latitude, longitude },
+      {
+        latitude: parseFloat(targetLatitude),
+        longitude: parseFloat(targetLongitude)
+      }
+    ]);
+    console.log(midPoint);
     return (
       <View style={styles.container}>
         <MapView
@@ -45,8 +58,8 @@ export default class MapResult extends Component {
           }}
           style={styles.mapStyle}
           initialRegion={{
-            latitude: midLat,
-            longitude: midLong,
+            latitude: midPoint.latitude,
+            longitude: midPoint.longitude,
             latitudeDelta: 90,
             longitudeDelta: 90 * ASPECT_RATIO
           }}
