@@ -13,7 +13,7 @@ class SubmitButton extends Component {
     return <Button onPress={this.handleSubmit} title="submit" />;
   }
   componentDidMount() {
-    window.setTimeout(this.handleTimeOut, 35000);
+    window.setTimeout(this.handleTimeOut, 45000)
   }
 
   handleTimeOut = () => {
