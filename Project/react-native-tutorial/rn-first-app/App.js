@@ -22,7 +22,12 @@ const RootStack = createStackNavigator(
     CreateGame,
     JoinGame,
     WaitingRoom,
-    EndGameScreen,
+    EndGameScreen: {
+      screen: EndGameScreen,
+      navigationOptions: {
+        headerLeft: null
+      }
+    },
     RoundResult: {
       screen: RoundResult,
       navigationOptions: {
