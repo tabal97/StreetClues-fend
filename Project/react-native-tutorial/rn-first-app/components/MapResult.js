@@ -24,27 +24,48 @@ export default class MapResult extends Component {
       longitudeDelta: LONGITUDE_DELTA
     }
   };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.map.fitToSuppliedMarkers(["guess", "target"], false);
+    }, 1000);
+  }
+
   render() {
     const { latitude, longitude, targetLatitude, targetLongitude } = this.props;
-    console.log(latitude, longitude, targetLatitude, targetLongitude);
+    const midLat = (latitude + parseFloat(targetLatitude)) / 2;
+    const midLong = (longitude + parseFloat(targetLongitude)) / 2;
+    console.log(midLat);
     return (
       <View style={styles.container}>
         <MapView
           provider={this.props.provider}
+          ref={ref => {
+            this.map = ref;
+          }}
           style={styles.mapStyle}
-          initialRegion={this.state.region}
+          initialRegion={{
+            latitude: midLat,
+            longitude: midLong,
+            latitudeDelta: 90,
+            longitudeDelta: 90 * ASPECT_RATIO
+          }}
         >
           <Polyline
             coordinates={[
               { latitude, longitude },
-              { latitude: targetLatitude, longitude: targetLongitude }
+              {
+                latitude: parseFloat(targetLatitude),
+                longitude: parseFloat(targetLongitude)
+              }
             ]}
           />
-          <Marker coordinate={{ latitude, longitude }} />
+          <Marker identifier="guess" coordinate={{ latitude, longitude }} />
           <Marker
+            identifier="target"
             coordinate={{
-              latitude: targetLatitude,
-              longitude: targetLongitude
+              latitude: parseFloat(targetLatitude),
+              longitude: parseFloat(targetLongitude)
             }}
           />
         </MapView>
