@@ -59,8 +59,9 @@ class WaitingRoom extends Component {
           })}
         </View>
         {host && (
-          <Button title="Start" onPress={() => this.handleGameStart(true)} />
+          <Button title="Start Game" onPress={() => this.handleGameStart(true)} />
         )}
+        <Button title="Leave Game" onPress={this.handleLeaveGame}></Button>
       </View>
     );
   }
@@ -90,7 +91,7 @@ class WaitingRoom extends Component {
     if (initialStart) {
       axios
         .post("http://192.168.230.176:5000/start_game", { pin: pin })
-        .then(({ data }) => {})
+        .then(({ data }) => { })
         .catch(console.log);
     } else {
       this.props.navigation.navigate("TabNavigator", {
@@ -100,7 +101,10 @@ class WaitingRoom extends Component {
         host
       });
     }
-  };
+  }
+  handleLeaveGame = () => {
+    this.props.navigation.push("Home")
+  }
 }
 const styles = StyleSheet.create({
   container: {
