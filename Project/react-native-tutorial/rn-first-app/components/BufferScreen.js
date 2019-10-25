@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native'
+import CountDown, { Countdown } from "react-native-countdown-component"
 
 class BufferScreen extends Component {
     state = {
@@ -14,7 +15,14 @@ class BufferScreen extends Component {
                 position: "absolute",
                 justifyContent: "center",
                 backgroundColor: "skyblue"
-            }}>
+            }}><CountDown
+                    until={5}
+                    digitStyle={{ backgroundColor: "blue" }}
+                    digitTxtStyle={{ color: "#1CC625" }}
+                    timeToShow={["S"]}
+                    timeLabels={{ s: null }}
+                    size={100}
+                />
             </View>
         );
     }
