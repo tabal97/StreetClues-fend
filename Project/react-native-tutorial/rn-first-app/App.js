@@ -30,21 +30,21 @@ const RootStack = createStackNavigator(
     WaitingRoom: {
       screen: WaitingRoom,
       navigationOptions: {
-        headerLeft: null,
+        header: null,
         gesturesEnabled: false
       }
     },
     EndGameScreen: {
       screen: EndGameScreen,
       navigationOptions: {
-        headerLeft: null,
+        header: null,
         gesturesEnabled: false
       }
     },
     RoundResult: {
       screen: RoundResult,
       navigationOptions: {
-        headerLeft: null,
+        header: null,
         gesturesEnabled: false
       }
     },
