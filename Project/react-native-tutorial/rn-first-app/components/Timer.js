@@ -12,7 +12,7 @@ class Timer extends React.Component {
 
     return (
       timeStart && <CountDown
-        until={40}
+        until={60}
         digitStyle={{ backgroundColor: "#FFF" }}
         digitTxtStyle={{ color: "#1CC625" }}
         timeToShow={["S"]}

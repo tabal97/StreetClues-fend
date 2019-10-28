@@ -34,9 +34,9 @@ class EndGameScreen extends Component {
     const name = this.props.navigation.getParam("name");
     return (
       <View style={styles.text}>
-        <Text>{`Name: Test`} </Text>
+        <Text>{`LeaderBoard`} </Text>
         {this.state.finalScores.map(user => {
-          return <Text>{user}</Text>;
+          return <Text key={user}>{user}</Text>;
         })}
         <Button title="Leave Game" onPress={this.handleLeaveGame} />
       </View>
