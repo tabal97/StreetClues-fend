@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Image } from "react-native";
 import axios from "axios";
-
-import Constants from "expo-constants";
-
-const { manifest } = Constants;
-
-const uri = `http://${manifest.debuggerHost.split(":").shift()}:5000`;
+import { convertArea } from "geolib";
 
 class Home extends Component {
   state = {
@@ -15,23 +10,17 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Street Clue!</Text>
+        <Image source={require("../assets/logo.png")} style={styles.img} />
         <Button title="Create Game" onPress={this.handleCreateGame} />
         <Button title="Join Game" onPress={this.handleJoinGame} />
       </View>
     );
   }
-  componentDidMount() {
-    //API request for all the pins
-    //.then(this.setState({pins}))
-  }
-  handleCreateGame = () => {
-    //API post new game instance with randomly generated pin
 
-    let url = uri + "/create_game";
+  handleCreateGame = () => {
 
     axios
-      .get("http://192.168.230.161:5000/create_game")
+      .get("http://192.168.230.192:5000/create_game")
       .then(({ data }) => {
         this.setState({ pin: data.pin });
 
@@ -48,13 +37,14 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "whitesmoke",
     alignItems: "center",
     justifyContent: "center"
   },
-  header: {
-    fontSize: 50,
-    paddingBottom: 100
+  img: {
+    width: 350,
+    height: 350,
+    resizeMode: 'contain'
   }
 });
 
