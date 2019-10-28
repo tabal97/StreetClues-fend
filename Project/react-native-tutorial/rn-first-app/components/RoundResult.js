@@ -51,7 +51,7 @@ class RoundResult extends Component {
           targetLongitude={targetLongitude}
         />
         <Text style={styles.text}>{`End of Round ${nextRound}`} </Text>
-        <Text style={styles.text}>{`Round Score: ${score}`} </Text>
+        <Text style={styles.text}>{`Score: ${score}`} </Text>
         {host && everyoneAnswered && (
           <TouchableOpacity
             title="Next Round"
