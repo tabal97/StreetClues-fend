@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import axios from "axios";
 
-import Constants from "expo-constants";
-
-const { manifest } = Constants;
-
-const uri = `http://${manifest.debuggerHost.split(":").shift()}:5000`;
+const uri = `http://192.168.230.161:5000`;
 
 class Home extends Component {
   state = {
