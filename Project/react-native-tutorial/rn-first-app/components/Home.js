@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, ImageBackground, View, Button, Image } from "react-native";
 import axios from "axios";
 import { convertArea } from "geolib";
 
@@ -9,11 +9,12 @@ class Home extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Image source={require("../assets/logo.png")} style={styles.img} />
-        <Button title="Create Game" onPress={this.handleCreateGame} />
-        <Button title="Join Game" onPress={this.handleJoinGame} />
-      </View>
+      <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
+        <View >
+          <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
+          <Button title="Create Game" onPress={this.handleCreateGame} />
+          <Button title="Join Game" onPress={this.handleJoinGame} />
+        </View></ImageBackground >
     );
   }
 
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "whitesmoke",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
   img: {
     width: 350,
