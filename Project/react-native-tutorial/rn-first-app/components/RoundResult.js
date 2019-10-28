@@ -39,7 +39,7 @@ class RoundResult extends Component {
     const longitude = this.props.navigation.getParam("longitude");
     const targetLatitude = this.props.navigation.getParam("targetLatitude");
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
-    const name = this.props.navigation.getParam("name");
+    const nextRound = this.props.navigation.getParam("nextRound");
     const score = this.props.navigation.getParam("score");
     const { host, everyoneAnswered } = this.state;
     return (
@@ -50,7 +50,7 @@ class RoundResult extends Component {
           targetLatitude={targetLatitude}
           targetLongitude={targetLongitude}
         />
-        <Text style={styles.text}>{`Name: ${name}`} </Text>
+        <Text style={styles.text}>{`End of Round ${nextRound}`} </Text>
         <Text style={styles.text}>{`Round Score: ${score}`} </Text>
         {host && everyoneAnswered && (
           <TouchableOpacity
