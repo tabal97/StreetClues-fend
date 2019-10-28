@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
 import CountDown from "react-native-countdown-component";
@@ -39,31 +39,24 @@ class RoundResult extends Component {
     const longitude = this.props.navigation.getParam("longitude");
     const targetLatitude = this.props.navigation.getParam("targetLatitude");
     const targetLongitude = this.props.navigation.getParam("targetLongitude");
-    const name = this.props.navigation.getParam("name");
+    const nextRound = this.props.navigation.getParam("nextRound");
     const score = this.props.navigation.getParam("score");
     const { host, everyoneAnswered } = this.state;
     return (
-      <View style={styles.text}>
+      <View style={styles.container}>
         <MapResult
           latitude={latitude}
           longitude={longitude}
           targetLatitude={targetLatitude}
           targetLongitude={targetLongitude}
         />
-        <Text>{`Name: ${name}`} </Text>
-        <Text>
-          {`Your Guess: Latitude: ${latitude},Longitude ${longitude}`}{" "}
-        </Text>
-        <Text>
-          {`Actual Answer: Latitude: ${targetLatitude},Longitude ${targetLongitude}`}{" "}
-        </Text>
-        <Text>{`Round Score: ${score}`} </Text>
-        <Text>{`Host: ${host}`} </Text>
+        <Text style={styles.text}>{`End of Round ${nextRound}`} </Text>
+        <Text style={styles.text}>{`Score: ${score}`} </Text>
         {host && everyoneAnswered && (
-          <Button
+          <TouchableOpacity
             title="Next Round"
             onPress={() => this.handleNextRound(true)}
-          />
+          ><Text style={styles.button}>Next Round</Text></TouchableOpacity>
         )}
       </View>
     );
@@ -94,7 +87,7 @@ class RoundResult extends Component {
 
     if (initialStart) {
       axios
-        .post("http://192.168.230.161:5000/next_round", { pin: pin })
+        .post("http://192.168.230.192:5000/next_round", { pin: pin })
         .then(({ data }) => { })
         .catch(console.log);
     } else if (endGame) {
@@ -134,10 +127,22 @@ class RoundResult extends Component {
   };
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  },
   text: {
-    fontSize: 35,
-    padding: 20,
-    backgroundColor: "skyblue"
+    fontSize: 40,
+    padding: 5,
+    backgroundColor: "skyblue",
+    opacity: 0.6
+  },
+  button: {
+    fontSize: 30,
+    marginTop: 20,
+    paddingBottom: 20
   }
 });
 export default RoundResult;
