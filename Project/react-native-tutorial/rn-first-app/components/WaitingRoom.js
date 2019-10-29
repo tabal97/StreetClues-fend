@@ -94,7 +94,7 @@ class WaitingRoom extends Component {
     if (initialStart) {
       axios
         .post("http://192.168.230.192:5000/start_game", { pin: pin })
-        .then(({ data }) => {})
+        .then(({ data }) => { })
         .catch(console.log);
     } else {
       this.props.navigation.navigate("TabNavigator", {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, ImageBackground, View, Image, TouchableOpacity, Text } from "react-native";
 import axios from "axios";
+import { convertArea } from "geolib";
 
-const uri = `http://192.168.230.192:5000`;
 
 class Home extends Component {
   state = {
@@ -10,21 +10,16 @@ class Home extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Street Clue!</Text>
-        <Button title="Create Game" onPress={this.handleCreateGame} />
-        <Button title="Join Game" onPress={this.handleJoinGame} />
-      </View>
+      <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
+        <View style={styles.container}>
+          <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
+          <TouchableOpacity onPress={this.handleCreateGame} ><Text style={styles.create}>Create Game</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.handleJoinGame} ><Text style={styles.join}>Join Game</Text></TouchableOpacity>
+        </View></ImageBackground >
     );
   }
-  componentDidMount() {
-    //API request for all the pins
-    //.then(this.setState({pins}))
-  }
-  handleCreateGame = () => {
-    //API post new game instance with randomly generated pin
 
-    let url = uri + "/create_game";
+  handleCreateGame = () => {
 
     axios
       .get("http://192.168.230.192:5000/create_game")
@@ -44,13 +39,30 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
-  header: {
-    fontSize: 50,
-    paddingBottom: 100
+  img: {
+    width: 350,
+    height: 350,
+    resizeMode: 'contain'
+  },
+  create: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.7,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
+  },
+  join: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.8,
+    marginBottom: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 

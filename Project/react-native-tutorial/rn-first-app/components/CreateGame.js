@@ -49,11 +49,22 @@ class CreateGame extends Component {
         });
       });
 
-    //axios request to add the host goes here
-  };
-  addPlayer = () => {
-    //function for adding new player object into the
-  };
+
+    handleCreateGame = () => {
+        const { name, host } = this.state;
+        const pin = this.props.navigation.getParam("pin");
+        // this.props.navigation.setParams({ params: { currentRound: 1 }, key: "currentRound" });
+        axios
+            .post("http://192.168.230.192:5000/add_player", { name, pin })
+            .then(({ data }) => {
+                this.props.navigation.navigate("WaitingRoom", { name, pin, targetLocation: data.locations, host });
+            });
+
+        //axios request to add the host goes here
+    };
+    addPlayer = () => {
+        //function for adding new player object into the
+    };
 }
 const styles = StyleSheet.create({
   container: {
