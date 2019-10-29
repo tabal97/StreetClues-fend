@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, ImageBackground, View, Button, Image } from "react-native";
 import { withNavigation } from "react-navigation";
+import { StyleSheet, ImageBackground, View, Image, TouchableOpacity, Text } from "react-native";
 import axios from "axios";
 import { convertArea } from "geolib";
 
@@ -10,19 +10,13 @@ class Home extends Component {
   };
   render() {
     return (
-      <ImageBackground
-        source={require("../assets/background-home.jpg")}
-        style={styles.container}
-      >
-        <View>
-          <Image
-            source={require("../assets/logo-transparent.png")}
-            style={styles.img}
-          />
-          <Button title="Create Game" onPress={this.handleCreateGame} />
-          <Button title="Join Game" onPress={this.handleJoinGame} />
-        </View>
-      </ImageBackground>
+
+      <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
+        <View style={styles.container}>
+          <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
+          <TouchableOpacity onPress={this.handleCreateGame} ><Text style={styles.create}>Create Game</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.handleJoinGame} ><Text style={styles.join}>Join Game</Text></TouchableOpacity>
+        </View></ImageBackground >
     );
   }
 
@@ -50,14 +44,30 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "whitesmoke",
     alignItems: "center",
     justifyContent: "space-between"
   },
   img: {
     width: 350,
     height: 350,
-    resizeMode: "contain"
+    resizeMode: 'contain'
+  },
+  create: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.7,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
+  },
+  join: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.8,
+    marginBottom: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 

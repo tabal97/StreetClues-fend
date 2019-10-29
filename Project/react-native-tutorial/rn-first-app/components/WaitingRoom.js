@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
 
@@ -48,23 +48,18 @@ class WaitingRoom extends Component {
     const { users } = this.state;
     return (
       <View style={styles.container}>
-        <Text>Waiting Room!</Text>
-        <Text>{`Room Pin: ${pin}`}</Text>
-        <View style={styles.playersList}>
-          {users.map((user, i) => {
-            return (
-              <Text style={styles.playersList} key={user}>{`Player ${i +
-                1}: ${user}`}</Text>
-            );
-          })}
-        </View>
+        <Text style={styles.header}>Waiting Room</Text>
+        <Text style={styles.pin}>{`Room Pin: ${pin}`}</Text>
+        {users.map((user, i) => {
+          return (
+            <Text style={styles.playersList} key={user}>{`Player ${i +
+              1}: ${user}`}</Text>
+          );
+        })}
         {host && (
-          <Button
-            title="Start Game"
-            onPress={() => this.handleGameStart(true)}
-          />
+          <TouchableOpacity onPress={() => this.handleGameStart(true)} ><Text style={styles.button}>Start Game</Text></TouchableOpacity>
         )}
-        <Button title="Leave Game" onPress={this.handleLeaveGame}></Button>
+        <TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.button}>Leave Game</Text></TouchableOpacity>
       </View>
     );
   }
@@ -116,8 +111,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly"
   },
+  header: {
+    fontSize: 50,
+    textDecorationLine: "underline"
+  },
+  pin: {
+    fontSize: 40,
+    fontWeight: "bold"
+  },
   playersList: {
     fontSize: 35
+  },
+  button: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.8,
+    marginBottom: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 

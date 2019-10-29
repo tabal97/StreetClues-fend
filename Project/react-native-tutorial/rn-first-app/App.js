@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Button, BackHandler } from "react-native";
+import { BackHandler } from "react-native";
 import Home from "./components/Home";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
@@ -14,8 +14,26 @@ import GoBackToHomeButton from "./components/GoBackToHomeButton";
 import { createAppContainer, NavigationEvents } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
+import Icon from "react-native-vector-icons/Ionicons"
 
-const TabNavigator = createBottomTabNavigator({ StreetView, Map });
+const TabNavigator = createBottomTabNavigator(
+  {
+    StreetView: {
+      screen: StreetView,
+      navigationOptions: {
+        tabBarIcon: () => (
+          <Icon name="ios-navigate" size={24} />
+        )
+      }
+    }, Map: {
+      screen: Map,
+      navigationOptions: {
+        tabBarIcon: () => (
+          <Icon name="ios-globe" size={24} />
+        )
+      }
+    }
+  });
 
 const RootStack = createStackNavigator({
   Home: {
