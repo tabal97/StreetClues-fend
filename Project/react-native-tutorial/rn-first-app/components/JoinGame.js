@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, KeyboardAvoidingView, TouchableOpacity, TextInput } from "react-native";
 import axios from "axios";
 
 class JoinGame extends Component {
@@ -11,7 +11,7 @@ class JoinGame extends Component {
   render() {
     const { name, enteredPin } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Join Game</Text>
         <TextInput
           placeholder="Enter Name"
@@ -29,7 +29,7 @@ class JoinGame extends Component {
         />
         <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
 
-      </View>
+      </KeyboardAvoidingView>
     );
   }
   handleNameChange = e => {
