@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import axios from "axios";
 
-const uri = `http://192.168.230.161:5000`;
+const uri = `http://192.168.230.192:5000`;
 
 class Home extends Component {
   state = {
@@ -27,7 +27,7 @@ class Home extends Component {
     let url = uri + "/create_game";
 
     axios
-      .get("http://192.168.230.161:5000/create_game")
+      .get("http://192.168.230.192:5000/create_game")
       .then(({ data }) => {
         this.setState({ pin: data.pin });
 
