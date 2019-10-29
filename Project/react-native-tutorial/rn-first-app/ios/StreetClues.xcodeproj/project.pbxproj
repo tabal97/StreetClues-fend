@@ -11,6 +11,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		AE1BC068236881CA00FA12B3 /* StreetClue Icon in Resources */ = {isa = PBXBuildFile; fileRef = AE1BC067236881CA00FA12B3 /* StreetClue Icon */; };
 		D2E4AFC1F72C807F1769BF1A /* libPods-StreetClues.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4683215B088A202AFC6BE7AE /* libPods-StreetClues.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		6240E888785A3486B09C433F /* Pods-StreetClues.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StreetClues.debug.xcconfig"; path = "Target Support Files/Pods-StreetClues/Pods-StreetClues.debug.xcconfig"; sourceTree = "<group>"; };
 		84300C95557465C73AEF7857 /* Pods-StreetClues.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StreetClues.release.xcconfig"; path = "Target Support Files/Pods-StreetClues/Pods-StreetClues.release.xcconfig"; sourceTree = "<group>"; };
 		8E213FCEC2DC5F247F77C0E8 /* Pods-test3and.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test3and.release.xcconfig"; path = "Target Support Files/Pods-test3and/Pods-test3and.release.xcconfig"; sourceTree = "<group>"; };
+		AE1BC067236881CA00FA12B3 /* StreetClue Icon */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "StreetClue Icon"; path = "../../../../../../../Documents/StreetClue Icon"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -52,6 +54,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				AE1BC067236881CA00FA12B3 /* StreetClue Icon */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -172,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1BC068236881CA00FA12B3 /* StreetClue Icon in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
