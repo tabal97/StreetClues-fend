@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
+import { StackActions, NavigationActions } from "react-navigation";
 
 //get a request for all the already joined users
 class WaitingRoom extends Component {
@@ -29,6 +30,9 @@ class WaitingRoom extends Component {
       });
       this.channel.bind("startGame", data => {
         this.handleGameStart();
+      });
+      this.channel.bind("playerLeave", data => {
+        this.handlePlayerLeave();
       });
     });
   }
@@ -101,7 +105,32 @@ class WaitingRoom extends Component {
     }
   };
   handleLeaveGame = () => {
-    this.props.navigation.push("Home");
+    const pin = this.props.navigation.getParam("pin");
+    const name = this.props.navigation.getParam("name");
+    const host = this.props.navigation.getParam("host");
+    this.pusher.unsubscribe(pin);
+
+    axios
+      .post("http://192.168.230.176:5000/remove_player", {
+        pin: pin,
+        name: name
+      })
+      .then(() => {
+        this.props.navigation.push("Home");
+        // this.props.navigation.dispatch(resetAction);
+      });
+  };
+
+  handlePlayerLeave = () => {
+    const pin = this.props.navigation.getParam("pin");
+
+    axios
+      .post("http://192.168.230.176:5000/get_players", { pin: pin })
+      .then(({ data }) => {
+        console.log("hello");
+        this.setState({ users: data.players });
+      })
+      .catch(console.log);
   };
 }
 const styles = StyleSheet.create({
