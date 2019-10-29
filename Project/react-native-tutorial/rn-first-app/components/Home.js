@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, ImageBackground, View, Button, Image } from "react-native";
+import { withNavigation } from "react-navigation";
 import axios from "axios";
 import { convertArea } from "geolib";
 
@@ -9,19 +10,25 @@ class Home extends Component {
   };
   render() {
     return (
-      <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
-        <View >
-          <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
+      <ImageBackground
+        source={require("../assets/background-home.jpg")}
+        style={styles.container}
+      >
+        <View>
+          <Image
+            source={require("../assets/logo-transparent.png")}
+            style={styles.img}
+          />
           <Button title="Create Game" onPress={this.handleCreateGame} />
           <Button title="Join Game" onPress={this.handleJoinGame} />
-        </View></ImageBackground >
+        </View>
+      </ImageBackground>
     );
   }
 
   handleCreateGame = () => {
-
     axios
-      .get("http://192.168.230.192:5000/create_game")
+      .get("http://192.168.230.176:5000/create_game")
       .then(({ data }) => {
         this.setState({ pin: data.pin });
 
@@ -34,6 +41,11 @@ class Home extends Component {
     const { pin } = this.state;
     this.props.navigation.navigate("JoinGame", { pin });
   };
+
+  componentDidUpdate = () => {
+    const name = this.props.navigation.getParam("test");
+    console.log(name);
+  };
 }
 const styles = StyleSheet.create({
   container: {
@@ -45,8 +57,8 @@ const styles = StyleSheet.create({
   img: {
     width: 350,
     height: 350,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   }
 });
 
-export default Home;
+export default withNavigation(Home);

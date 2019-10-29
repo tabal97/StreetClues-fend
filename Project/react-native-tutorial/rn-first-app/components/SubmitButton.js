@@ -12,16 +12,18 @@ class SubmitButton extends Component {
 
   render() {
     const { disabled } = this.state;
-    return <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />;
+    return (
+      <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />
+    );
   }
   componentDidMount() {
-    window.setTimeout(this.handleTimeOut, 65000)
-    window.setTimeout(this.enableButton, 5000)
+    window.setTimeout(this.handleTimeOut, 65000);
+    window.setTimeout(this.enableButton, 5000);
   }
 
   enableButton = () => {
-    this.setState({ disabled: false })
-  }
+    this.setState({ disabled: false });
+  };
 
   handleTimeOut = () => {
     const { submitted } = this.state;
@@ -37,7 +39,7 @@ class SubmitButton extends Component {
       const targetLongitude = targetLocation[1];
 
       axios
-        .post("http://192.168.230.192:5000/update_score", {
+        .post("http://192.168.230.176:5000/update_score", {
           pin: pin,
           name: name,
           score: 0
@@ -85,7 +87,7 @@ class SubmitButton extends Component {
     );
 
     axios
-      .post("http://192.168.230.192:5000/update_score", {
+      .post("http://192.168.230.176:5000/update_score", {
         pin: pin,
         name: name,
         score: score
