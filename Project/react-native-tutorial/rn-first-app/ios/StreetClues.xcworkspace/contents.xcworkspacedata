@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../../../../../../Downloads/StreetClue Logo (3).png">
+   </FileRef>
+   <FileRef
       location = "group:StreetClues.xcodeproj">
    </FileRef>
    <FileRef
