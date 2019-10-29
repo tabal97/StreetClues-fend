@@ -22,7 +22,7 @@ class Home extends Component {
 
   handleCreateGame = () => {
     axios
-      .get("http://192.168.230.176:5000/create_game")
+      .get("http://192.168.230.192:5000/create_game")
       .then(({ data }) => {
         this.setState({ pin: data.pin });
 

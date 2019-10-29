@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 import axios from "axios";
 
 class JoinGame extends Component {
@@ -27,12 +27,8 @@ class JoinGame extends Component {
           onChangeText={this.handlePinChange}
           value={enteredPin}
         />
-        <Button
-          style={styles.button}
-          disabled={!name || enteredPin.length !== 4}
-          title="Join"
-          onPress={this.handleJoinGame}
-        />
+        <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join Game</Text></TouchableOpacity>
+
       </View>
     );
   }
@@ -45,7 +41,7 @@ class JoinGame extends Component {
 
   handleJoinGame = () => {
     axios
-      .post("http://192.168.230.176:5000/add_player", {
+      .post("http://192.168.230.192:5000/add_player", {
         name: this.state.name,
         pin: this.state.enteredPin
       })
@@ -66,29 +62,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "skyblue",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   inputBox: {
     height: 50,
     width: 200,
     padding: 3,
     margin: 3,
-    backgroundColor: "whitesmoke",
-    borderColor: "black",
-    borderWidth: 1
+    borderRadius: 20,
+    backgroundColor: "whitesmoke"
   },
   header: {
     fontSize: 50,
-    paddingBottom: 100
+    textDecorationLine: "underline"
   },
   button: {
-    height: 50,
-    width: 200,
-    padding: 3,
-    margin: 3,
+    fontSize: 30,
     backgroundColor: "whitesmoke",
-    borderColor: "black",
-    borderWidth: 1
+    opacity: 0.8,
+    marginBottom: 250,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 

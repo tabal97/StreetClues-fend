@@ -89,8 +89,8 @@ class RoundResult extends Component {
 
     if (initialStart) {
       axios
-        .post("http://192.168.230.176:5000/next_round", { pin: pin })
-        .then(({ data }) => {})
+        .post("http://192.168.230.192:5000/next_round", { pin: pin })
+        .then(({ data }) => { })
         .catch(console.log);
     } else if (endGame) {
       this.props.navigation.push("EndGameScreen", {

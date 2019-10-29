@@ -39,7 +39,7 @@ class SubmitButton extends Component {
       const targetLongitude = targetLocation[1];
 
       axios
-        .post("http://192.168.230.176:5000/update_score", {
+        .post("http://192.168.230.192:5000/update_score", {
           pin: pin,
           name: name,
           score: 0
@@ -87,7 +87,7 @@ class SubmitButton extends Component {
     );
 
     axios
-      .post("http://192.168.230.176:5000/update_score", {
+      .post("http://192.168.230.192:5000/update_score", {
         pin: pin,
         name: name,
         score: score
