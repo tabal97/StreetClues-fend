@@ -136,6 +136,7 @@ DEPENDENCIES:
   - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - GoogleMaps
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-streetview (from `../node_modules/react-native-streetview`)
@@ -302,6 +303,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 8f2117979aacb688fe304f834ff8800fadc320bb
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: 84362a388f9dbccdd07859eb49da89264a02f39c
+PODFILE CHECKSUM: b8b3e370cc01d918b0c15c109633faa207117137
 
 COCOAPODS: 1.8.4

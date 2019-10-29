@@ -5,7 +5,7 @@ import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
-import StreetView from "./components/StreetView";
+import StreetViewer from "./components/StreetView";
 import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
 import EndGameScreen from "./components/EndGameScreen";
@@ -14,50 +14,48 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
-const TabNavigator = createBottomTabNavigator({ StreetView, Map });
+const TabNavigator = createBottomTabNavigator({ StreetViewer, Map });
 
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        headerLeft: null,
-        gesturesEnabled: false
-      }
-    },
-    CreateGame,
-    JoinGame,
-    WaitingRoom: {
-      screen: WaitingRoom,
-      navigationOptions: {
-        headerLeft: null,
-        gesturesEnabled: false
-      }
-    },
-    EndGameScreen: {
-      screen: EndGameScreen,
-      navigationOptions: {
-        headerLeft: null,
-        gesturesEnabled: false
-      }
-    },
-    RoundResult: {
-      screen: RoundResult,
-      navigationOptions: {
-        headerLeft: null,
-        gesturesEnabled: false
-      }
-    },
-    TabNavigator: {
-      screen: TabNavigator,
-      navigationOptions: {
-        headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />,
-        gesturesEnabled: false
-      }
+const RootStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false
+    }
+  },
+  CreateGame,
+  JoinGame,
+  WaitingRoom: {
+    screen: WaitingRoom,
+    navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false
+    }
+  },
+  EndGameScreen: {
+    screen: EndGameScreen,
+    navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false
+    }
+  },
+  RoundResult: {
+    screen: RoundResult,
+    navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false
+    }
+  },
+  TabNavigator: {
+    screen: TabNavigator,
+    navigationOptions: {
+      headerLeft: () => <Timer />,
+      headerRight: () => <SubmitButton />,
+      gesturesEnabled: false
     }
   }
-);
+});
 
 const AppContainer = createAppContainer(RootStack);
 
