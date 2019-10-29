@@ -45,9 +45,13 @@ class SubmitButton extends Component {
           score: 0
         })
         .then(({ data }) => {
+          let endRound = false;
+          if (data.msg === "End of Round" || data.msg === "End of Game") {
+            endRound = true;
+          }
           this.props.navigation.navigate("RoundResult", {
-            latitude: "Nothing",
-            longitude: "Nothing",
+            latitude: 0,
+            longitude: 0,
             name,
             pin,
             host,
@@ -56,13 +60,16 @@ class SubmitButton extends Component {
             score: 0,
             nextRound: data.nextRound,
             targetLatitude,
-            targetLongitude
+            targetLongitude,
+            endGame: data.endGame,
+            endRound: endRound
           });
         })
         .catch(console.log);
     }
   };
   handleSubmit = () => {
+    console.log("ran");
     this.setState({ submitted: true });
     const targetLocation = this.props.navigation.state.routes[1].params
       .targetLocation;
@@ -73,18 +80,26 @@ class SubmitButton extends Component {
 
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
-
-    const {
-      latitude,
-      longitude
-    } = this.props.navigation.state.routes[1].params.coordinate;
-
-    const score = util.calculateScore(
-      latitude,
-      longitude,
-      targetLatitude,
-      targetLongitude
-    );
+    let latitude = targetLatitude;
+    let longitude = targetLongitude;
+    let score = 0;
+    if (this.props.navigation.state.routes[1].params.coordinate) {
+      console.log("ran2");
+      latitude = this.props.navigation.state.routes[1].params.coordinate
+        .longitude;
+      longitude = this.props.navigation.state.routes[1].params.coordinate
+        .longitude;
+      score = util.calculateScore(
+        latitude,
+        longitude,
+        targetLatitude,
+        targetLongitude
+      );
+    } else {
+      console.log("ran4");
+    }
+    console.log(latitude);
+    console.log(longitude);
 
     axios
       .post("http://192.168.230.176:5000/update_score", {

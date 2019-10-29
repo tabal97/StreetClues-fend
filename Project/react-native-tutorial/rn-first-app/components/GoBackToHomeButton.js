@@ -6,7 +6,7 @@ class GoBackToHomeButton extends Component {
   state = {};
 
   render() {
-    return <Button onPress={this.handlePress} title="back" />;
+    return <Button onPress={this.handlePress} title="< Back" />;
   }
 
   handlePress = () => {
