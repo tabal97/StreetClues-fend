@@ -59,7 +59,10 @@ class WaitingRoom extends Component {
           })}
         </View>
         {host && (
-          <Button title="Start Game" onPress={() => this.handleGameStart(true)} />
+          <Button
+            title="Start Game"
+            onPress={() => this.handleGameStart(true)}
+          />
         )}
         <Button title="Leave Game" onPress={this.handleLeaveGame}></Button>
       </View>
@@ -101,10 +104,10 @@ class WaitingRoom extends Component {
         host
       });
     }
-  }
+  };
   handleLeaveGame = () => {
-    this.props.navigation.push("Home")
-  }
+    this.props.navigation.push("Home");
+  };
 }
 const styles = StyleSheet.create({
   container: {

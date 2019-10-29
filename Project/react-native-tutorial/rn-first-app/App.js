@@ -5,7 +5,7 @@ import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
 import WaitingRoom from "./components/WaitingRoom";
 import Map from "./components/Map";
-import StreetView from "./components/StreetView";
+import StreetViewer from "./components/StreetView";
 import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
 import EndGameScreen from "./components/EndGameScreen";
@@ -14,7 +14,8 @@ import { createAppContainer, NavigationEvents } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
-const TabNavigator = createBottomTabNavigator({ StreetView, Map });
+const TabNavigator = createBottomTabNavigator({ StreetViewer, Map });
+
 
 const RootStack = createStackNavigator(
   {
@@ -57,7 +58,7 @@ const RootStack = createStackNavigator(
       }
     }
   }
-);
+});
 
 const AppContainer = createAppContainer(RootStack);
 
