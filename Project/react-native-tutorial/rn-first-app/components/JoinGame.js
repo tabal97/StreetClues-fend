@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, KeyboardAvoidingView, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, ImageBackground } from "react-native";
 import axios from "axios";
 
 class JoinGame extends Component {
@@ -10,7 +10,7 @@ class JoinGame extends Component {
   };
   render() {
     const { name, enteredPin } = this.state;
-    return (
+    return (<ImageBackground source={require("../assets/background-join.png")} style={styles.container}>
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Join Game</Text>
         <TextInput
@@ -29,7 +29,7 @@ class JoinGame extends Component {
         />
         <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
 
-      </KeyboardAvoidingView>
+      </KeyboardAvoidingView></ImageBackground>
     );
   }
   handleNameChange = e => {
@@ -61,7 +61,6 @@ class JoinGame extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "skyblue",
     alignItems: "center",
     justifyContent: "space-between"
   },
@@ -74,7 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke"
   },
   header: {
+    backgroundColor: "whitesmoke",
+    padding: 10,
+    marginTop: 10,
     fontSize: 50,
+    opacity: 0.8,
     textDecorationLine: "underline"
   },
   button: {
