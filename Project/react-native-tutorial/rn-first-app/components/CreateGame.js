@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ImageBackground, KeyboardAvoidingView } from "react-native";
 import axios from "axios";
 import { withNavigation } from "react-navigation";
 
@@ -12,16 +12,17 @@ class CreateGame extends Component {
     render() {
         const { name } = this.state;
         return (
-            <View style={styles.container}>
-                <Text style={styles.header}>Create Game</Text>
-                <TextInput
-                    placeholder="Enter Name"
-                    style={styles.inputBox}
-                    onChangeText={this.handleNameChange}
-                    value={name}
-                />
-                <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}><Text style={styles.button}>Create</Text></TouchableOpacity>
-            </View>
+            <ImageBackground source={require("../assets/background-create.jpg")} style={styles.container}>
+                <KeyboardAvoidingView style={styles.container} behavior="padding">
+                    <Text style={styles.header}>Create Game</Text>
+                    <TextInput
+                        placeholder="Enter Name"
+                        style={styles.inputBox}
+                        onChangeText={this.handleNameChange}
+                        value={name}
+                    />
+                    <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}><Text style={styles.button}>Create</Text></TouchableOpacity>
+                </KeyboardAvoidingView></ImageBackground>
         );
     }
 
@@ -53,7 +54,6 @@ class CreateGame extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "skyblue",
         alignItems: "center",
         justifyContent: "space-between"
     },
@@ -66,7 +66,11 @@ const styles = StyleSheet.create({
         backgroundColor: "whitesmoke"
     },
     header: {
+        backgroundColor: "whitesmoke",
+        padding: 10,
+        marginTop: 10,
         fontSize: 50,
+        opacity: 0.8,
         textDecorationLine: "underline"
     },
     button: {
