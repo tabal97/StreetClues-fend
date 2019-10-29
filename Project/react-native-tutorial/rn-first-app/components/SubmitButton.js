@@ -37,12 +37,27 @@ class SubmitButton extends Component {
 
       const targetLatitude = targetLocation[0];
       const targetLongitude = targetLocation[1];
+      let latitude = targetLatitude;
+      let longitude = targetLongitude;
+      let score = 0;
+      if (this.props.navigation.state.routes[1].params.coordinate) {
+        latitude = this.props.navigation.state.routes[1].params.coordinate
+          .longitude;
+        longitude = this.props.navigation.state.routes[1].params.coordinate
+          .longitude;
+        score = util.calculateScore(
+          latitude,
+          longitude,
+          targetLatitude,
+          targetLongitude
+        );
+      }
 
       axios
         .post("http://192.168.230.176:5000/update_score", {
           pin: pin,
           name: name,
-          score: 0
+          score
         })
         .then(({ data }) => {
           let endRound = false;
@@ -50,14 +65,14 @@ class SubmitButton extends Component {
             endRound = true;
           }
           this.props.navigation.navigate("RoundResult", {
-            latitude: 0,
-            longitude: 0,
+            latitude,
+            longitude,
             name,
             pin,
             host,
             nextLat: data.locations[0],
             nextLong: data.locations[1],
-            score: 0,
+            score,
             nextRound: data.nextRound,
             targetLatitude,
             targetLongitude,
@@ -84,7 +99,6 @@ class SubmitButton extends Component {
     let longitude = targetLongitude;
     let score = 0;
     if (this.props.navigation.state.routes[1].params.coordinate) {
-      console.log("ran2");
       latitude = this.props.navigation.state.routes[1].params.coordinate
         .longitude;
       longitude = this.props.navigation.state.routes[1].params.coordinate
@@ -95,11 +109,7 @@ class SubmitButton extends Component {
         targetLatitude,
         targetLongitude
       );
-    } else {
-      console.log("ran4");
     }
-    console.log(latitude);
-    console.log(longitude);
 
     axios
       .post("http://192.168.230.176:5000/update_score", {
