@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Pusher from "pusher-js/react-native";
-import CountDown from "react-native-countdown-component";
 
 class EndGameScreen extends Component {
   constructor(props) {
@@ -33,12 +32,12 @@ class EndGameScreen extends Component {
   render() {
     const name = this.props.navigation.getParam("name");
     return (
-      <View style={styles.text}>
-        <Text>{`LeaderBoard`} </Text>
+      <View style={styles.container}>
+        <Text style={styles.header}>{`Final Scores`} </Text>
         {this.state.finalScores.map(user => {
-          return <Text key={user}>{user}</Text>;
+          return <Text key={user} style={styles.scoreList}>{user}</Text>;
         })}
-        <Button title="Leave Game" onPress={this.handleLeaveGame} />
+        <TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.leave}>Leave Game</Text></TouchableOpacity>
       </View>
     );
   }
@@ -69,10 +68,27 @@ class EndGameScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 35,
-    padding: 20,
-    backgroundColor: "skyblue"
+  container: {
+    flex: 1,
+    backgroundColor: "skyblue",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  header: {
+    fontSize: 50,
+    textDecorationLine: "underline"
+  },
+  scoreList: {
+    fontSize: 35
+  },
+  leave: {
+    fontSize: 30,
+    backgroundColor: "whitesmoke",
+    opacity: 0.8,
+    marginBottom: 100,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 
