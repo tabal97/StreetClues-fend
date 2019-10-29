@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 import axios from "axios";
 import { withNavigation } from "react-navigation";
 
@@ -20,12 +20,7 @@ class CreateGame extends Component {
                     onChangeText={this.handleNameChange}
                     value={name}
                 />
-                <Button
-                    style={styles.button}
-                    disabled={!name}
-                    title="Create"
-                    onPress={this.handleCreateGame}
-                />
+                <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}><Text style={styles.button}>Create</Text></TouchableOpacity>
             </View>
         );
     }
@@ -59,29 +54,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "skyblue",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     inputBox: {
         height: 50,
         width: 200,
         padding: 3,
         margin: 3,
-        backgroundColor: "whitesmoke",
-        borderColor: "black",
-        borderWidth: 1
+        borderRadius: 20,
+        backgroundColor: "whitesmoke"
     },
     header: {
         fontSize: 50,
-        paddingBottom: 100
+        textDecorationLine: "underline"
     },
     button: {
-        height: 50,
-        width: 200,
-        padding: 3,
-        margin: 3,
+        fontSize: 30,
         backgroundColor: "whitesmoke",
-        borderColor: "black",
-        borderWidth: 1
+        opacity: 0.8,
+        marginBottom: 250,
+        borderRadius: 10,
+        overflow: "hidden",
+        padding: 10
     }
 });
 

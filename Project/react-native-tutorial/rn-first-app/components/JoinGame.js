@@ -27,7 +27,7 @@ class JoinGame extends Component {
           onChangeText={this.handlePinChange}
           value={enteredPin}
         />
-        <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join Game</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
 
       </View>
     );
