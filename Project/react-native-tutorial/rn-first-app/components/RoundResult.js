@@ -56,7 +56,9 @@ class RoundResult extends Component {
           <TouchableOpacity
             title="Next Round"
             onPress={() => this.handleNextRound(true)}
-          ><Text style={styles.button}>Next Round</Text></TouchableOpacity>
+          >
+            <Text style={styles.button}>Next Round</Text>
+          </TouchableOpacity>
         )}
       </View>
     );

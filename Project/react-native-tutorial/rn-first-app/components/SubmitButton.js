@@ -12,16 +12,18 @@ class SubmitButton extends Component {
 
   render() {
     const { disabled } = this.state;
-    return <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />;
+    return (
+      <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />
+    );
   }
   componentDidMount() {
-    window.setTimeout(this.handleTimeOut, 65000)
-    window.setTimeout(this.enableButton, 5000)
+    window.setTimeout(this.handleTimeOut, 65000);
+    window.setTimeout(this.enableButton, 5000);
   }
 
   enableButton = () => {
-    this.setState({ disabled: false })
-  }
+    this.setState({ disabled: false });
+  };
 
   handleTimeOut = () => {
     const { submitted } = this.state;
@@ -35,32 +37,54 @@ class SubmitButton extends Component {
 
       const targetLatitude = targetLocation[0];
       const targetLongitude = targetLocation[1];
+      let latitude = targetLatitude;
+      let longitude = targetLongitude;
+      let score = 0;
+      if (this.props.navigation.state.routes[1].params.coordinate) {
+        latitude = this.props.navigation.state.routes[1].params.coordinate
+          .latitude;
+        longitude = this.props.navigation.state.routes[1].params.coordinate
+          .longitude;
+        score = util.calculateScore(
+          latitude,
+          longitude,
+          targetLatitude,
+          targetLongitude
+        );
+      }
 
       axios
         .post("http://192.168.230.192:5000/update_score", {
           pin: pin,
           name: name,
-          score: 0
+          score
         })
         .then(({ data }) => {
+          let endRound = false;
+          if (data.msg === "End of Round" || data.msg === "End of Game") {
+            endRound = true;
+          }
           this.props.navigation.navigate("RoundResult", {
-            latitude: "Nothing",
-            longitude: "Nothing",
+            latitude,
+            longitude,
             name,
             pin,
             host,
             nextLat: data.locations[0],
             nextLong: data.locations[1],
-            score: 0,
+            score,
             nextRound: data.nextRound,
             targetLatitude,
-            targetLongitude
+            targetLongitude,
+            endGame: data.endGame,
+            endRound: endRound
           });
         })
         .catch(console.log);
     }
   };
   handleSubmit = () => {
+    console.log("ran");
     this.setState({ submitted: true });
     const targetLocation = this.props.navigation.state.routes[1].params
       .targetLocation;
@@ -71,18 +95,21 @@ class SubmitButton extends Component {
 
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
-
-    const {
-      latitude,
-      longitude
-    } = this.props.navigation.state.routes[1].params.coordinate;
-
-    const score = util.calculateScore(
-      latitude,
-      longitude,
-      targetLatitude,
-      targetLongitude
-    );
+    let latitude = targetLatitude;
+    let longitude = targetLongitude;
+    let score = 0;
+    if (this.props.navigation.state.routes[1].params.coordinate) {
+      latitude = this.props.navigation.state.routes[1].params.coordinate
+        .latitude;
+      longitude = this.props.navigation.state.routes[1].params.coordinate
+        .longitude;
+      score = util.calculateScore(
+        latitude,
+        longitude,
+        targetLatitude,
+        targetLongitude
+      );
+    }
 
     axios
       .post("http://192.168.230.192:5000/update_score", {

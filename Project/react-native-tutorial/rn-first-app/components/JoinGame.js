@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { StyleSheet, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, ImageBackground } from "react-native";
 import axios from "axios";
 
 class JoinGame extends Component {
@@ -11,7 +11,7 @@ class JoinGame extends Component {
   render() {
     const { name, enteredPin } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Join Game</Text>
         <TextInput
           placeholder="Enter Name"
@@ -27,13 +27,9 @@ class JoinGame extends Component {
           onChangeText={this.handlePinChange}
           value={enteredPin}
         />
-        <Button
-          style={styles.button}
-          disabled={!name || enteredPin.length !== 4}
-          title="Join"
-          onPress={this.handleJoinGame}
-        />
-      </View>
+        <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
+
+      </KeyboardAvoidingView>
     );
   }
   handleNameChange = e => {
@@ -65,30 +61,34 @@ class JoinGame extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "skyblue",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "skyblue"
   },
   inputBox: {
     height: 50,
     width: 200,
     padding: 3,
     margin: 3,
-    backgroundColor: "whitesmoke",
-    borderColor: "black",
-    borderWidth: 1
+    borderRadius: 20,
+    backgroundColor: "whitesmoke"
   },
   header: {
+    backgroundColor: "whitesmoke",
+    padding: 10,
+    marginTop: 10,
     fontSize: 50,
-    paddingBottom: 100
+    opacity: 0.8,
+    textDecorationLine: "underline"
   },
   button: {
-    height: 50,
-    width: 200,
-    padding: 3,
-    margin: 3,
+    fontSize: 30,
     backgroundColor: "whitesmoke",
-    borderColor: "black",
-    borderWidth: 1
+    opacity: 0.8,
+    marginBottom: 250,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 10
   }
 });
 

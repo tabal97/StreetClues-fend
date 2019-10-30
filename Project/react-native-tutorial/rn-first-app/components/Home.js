@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withNavigation } from "react-navigation";
 import { StyleSheet, ImageBackground, View, Image, TouchableOpacity, Text } from "react-native";
 import axios from "axios";
 import { convertArea } from "geolib";
@@ -10,6 +11,7 @@ class Home extends Component {
   };
   render() {
     return (
+
       <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
         <View style={styles.container}>
           <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
@@ -20,7 +22,6 @@ class Home extends Component {
   }
 
   handleCreateGame = () => {
-
     axios
       .get("http://192.168.230.192:5000/create_game")
       .then(({ data }) => {
@@ -34,6 +35,11 @@ class Home extends Component {
   handleJoinGame = () => {
     const { pin } = this.state;
     this.props.navigation.navigate("JoinGame", { pin });
+  };
+
+  componentDidUpdate = () => {
+    const name = this.props.navigation.getParam("test");
+    console.log(name);
   };
 }
 const styles = StyleSheet.create({
@@ -66,4 +72,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default withNavigation(Home);

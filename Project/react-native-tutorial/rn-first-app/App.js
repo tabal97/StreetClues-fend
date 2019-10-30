@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Button, BackHandler } from "react-native";
+import { BackHandler } from "react-native";
 import Home from "./components/Home";
 import CreateGame from "./components/CreateGame";
 import JoinGame from "./components/JoinGame";
@@ -10,55 +10,78 @@ import Timer from "./components/Timer";
 import RoundResult from "./components/RoundResult";
 import EndGameScreen from "./components/EndGameScreen";
 import SubmitButton from "./components/SubmitButton";
+import GoBackToHomeButton from "./components/GoBackToHomeButton";
 import { createAppContainer, NavigationEvents } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
+import Icon from "react-native-vector-icons/Ionicons"
 
-const TabNavigator = createBottomTabNavigator({ StreetViewer, Map });
 
-
-const RootStack = createStackNavigator(
+const TabNavigator = createBottomTabNavigator(
   {
-    Home: {
-      screen: Home,
+    StreetViewer: {
+      screen: StreetViewer,
       navigationOptions: {
-        header: null,
-        gesturesEnabled: false
+        tabBarIcon: () => (
+          <Icon name="ios-navigate" size={24} />
+        )
       }
-    },
-    CreateGame,
-    JoinGame,
-    WaitingRoom: {
-      screen: WaitingRoom,
+    }, Map: {
+      screen: Map,
       navigationOptions: {
-        header: null,
-        gesturesEnabled: false
-      }
-    },
-    EndGameScreen: {
-      screen: EndGameScreen,
-      navigationOptions: {
-        header: null,
-        gesturesEnabled: false
-      }
-    },
-    RoundResult: {
-      screen: RoundResult,
-      navigationOptions: {
-        header: null,
-        gesturesEnabled: false
-      }
-    },
-    TabNavigator: {
-      screen: TabNavigator,
-      navigationOptions: {
-        headerLeft: () => <Timer />,
-        headerRight: () => <SubmitButton />,
-        gesturesEnabled: false
+        tabBarIcon: () => (
+          <Icon name="ios-globe" size={24} />
+        )
       }
     }
+  });
+
+const RootStack = createStackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false
+    }
+  },
+  CreateGame: {
+    screen: CreateGame,
+    navigationOptions: {
+      headerLeft: <GoBackToHomeButton />,
+      gesturesEnabled: false
+    }
+  },
+  JoinGame,
+  WaitingRoom: {
+    screen: WaitingRoom,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false
+    }
+  },
+  EndGameScreen: {
+    screen: EndGameScreen,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false
+    }
+  },
+  RoundResult: {
+    screen: RoundResult,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false
+    }
+  },
+  TabNavigator: {
+    screen: TabNavigator,
+    navigationOptions: {
+      headerLeft: () => <Timer />,
+      headerRight: () => <SubmitButton />,
+      gesturesEnabled: false
+    }
   }
-);
+});
 
 const AppContainer = createAppContainer(RootStack);
 
