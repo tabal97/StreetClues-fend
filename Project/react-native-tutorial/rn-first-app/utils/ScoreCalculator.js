@@ -11,6 +11,6 @@ exports.calculateScore = (lat, long, targetLat, targetLong) => {
       }
     );
     const distanceInKm = Math.round(distanceInM / 1000);
-    return 20038 - distanceInKm;
+    return Math.round((1 / 401522) * Math.pow(distanceInKm - 20038, 2));
   }
 };
