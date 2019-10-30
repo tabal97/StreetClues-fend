@@ -12,17 +12,16 @@ class CreateGame extends Component {
     render() {
         const { name } = this.state;
         return (
-            <ImageBackground source={require("../assets/background-create.jpg")} style={styles.container}>
-                <KeyboardAvoidingView style={styles.container} behavior="padding">
-                    <Text style={styles.header}>Create Game</Text>
-                    <TextInput
-                        placeholder="Enter Name"
-                        style={styles.inputBox}
-                        onChangeText={this.handleNameChange}
-                        value={name}
-                    />
-                    <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}><Text style={styles.button}>Create</Text></TouchableOpacity>
-                </KeyboardAvoidingView></ImageBackground>
+            <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <Text style={styles.header}>Create Game</Text>
+                <TextInput
+                    placeholder="Enter Name"
+                    style={styles.inputBox}
+                    onChangeText={this.handleNameChange}
+                    value={name}
+                />
+                <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}><Text style={styles.button}>Create</Text></TouchableOpacity>
+            </KeyboardAvoidingView>
         );
     }
 
@@ -55,7 +54,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        backgroundColor: "skyblue"
     },
     inputBox: {
         height: 50,

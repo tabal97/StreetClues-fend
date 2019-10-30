@@ -10,7 +10,7 @@ class JoinGame extends Component {
   };
   render() {
     const { name, enteredPin } = this.state;
-    return (<ImageBackground source={require("../assets/background-join.png")} style={styles.container}>
+    return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Join Game</Text>
         <TextInput
@@ -29,7 +29,7 @@ class JoinGame extends Component {
         />
         <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
 
-      </KeyboardAvoidingView></ImageBackground>
+      </KeyboardAvoidingView>
     );
   }
   handleNameChange = e => {
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    backgroundColor: "skyblue"
   },
   inputBox: {
     height: 50,
