@@ -46,7 +46,8 @@ const RootStack = createStackNavigator({
   CreateGame: {
     screen: CreateGame,
     navigationOptions: {
-      headerLeft: <GoBackToHomeButton />
+      headerLeft: <GoBackToHomeButton />,
+      gesturesEnabled: false
     }
   },
   JoinGame,
