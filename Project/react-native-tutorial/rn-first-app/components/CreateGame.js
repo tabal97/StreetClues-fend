@@ -4,6 +4,7 @@ import axios from "axios";
 import { withNavigation } from "react-navigation";
 
 class CreateGame extends Component {
+
     state = {
         name: "",
         host: true,
@@ -44,11 +45,9 @@ class CreateGame extends Component {
                 });
             });
 
-        //axios request to add the host goes here
+      //axios request to add the host goes here
     };
-    addPlayer = () => {
-        //function for adding new player object into the
-    };
+  };
 }
 const styles = StyleSheet.create({
     container: {
@@ -82,6 +81,7 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         padding: 10
     }
+
 });
 
 export default withNavigation(CreateGame);

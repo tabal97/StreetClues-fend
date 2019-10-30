@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { WebView } from "react-native-webview";
+import StreetView from "react-native-streetview";
 import BufferScreen from "./BufferScreen";
 
-class StreetView extends Component {
-  state = {
-    coordinates: [],
-    isLoading: true
-  };
+class StreetViewer extends Component {
   render() {
     // coordinates = [-30.7229747, 25.0958533];
-    const { coordinates, isLoading } = this.state;
+    const targetLocation = this.props.navigation.getParam("targetLocation");
 
     return (
       <View
@@ -22,26 +18,28 @@ class StreetView extends Component {
           justifyContent: "center"
         }}
       >
-        {!isLoading && (
-          <WebView
-            source={{
-              uri: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${
-                coordinates[0]
-                },${coordinates[1]}`
-            }}
-            scalesPageToFit={true}
-          />
-        )}
-        <BufferScreen />
+        <StreetView
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
+          allGesturesEnabled={true}
+          coordinate={{
+            latitude: targetLocation[0],
+            longitude: targetLocation[1]
+          }}
+          pov={{
+            tilt: parseFloat(0),
+            bearing: parseFloat(0),
+            zoom: parseInt(1)
+          }}
+        />
       </View>
     );
   }
-  componentDidMount() {
-    //this needs to be redone, u cant apply props to the state
-    const targetLocation = this.props.navigation.getParam("targetLocation");
-    this.setState({ coordinates: targetLocation, isLoading: false });
-  }
-
 }
 
-export default StreetView;
+export default StreetViewer;

@@ -62,6 +62,7 @@ class WaitingRoom extends Component {
         })}
         {host && (
           <TouchableOpacity onPress={() => this.handleGameStart(true)} ><Text style={styles.button}>Start Game</Text></TouchableOpacity>
+
         )}
         {!host && (<TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.button}>Leave Game</Text></TouchableOpacity>)}
       </View>
@@ -131,6 +132,7 @@ class WaitingRoom extends Component {
         this.setState({ users: data.players });
       })
       .catch(console.log);
+
   };
 }
 const styles = StyleSheet.create({
