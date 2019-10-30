@@ -90,7 +90,7 @@ class RoundResult extends Component {
     if (initialStart) {
       axios
         .post("http://192.168.230.192:5000/next_round", { pin: pin })
-        .then(({ data }) => { })
+        .then(({ data }) => {})
         .catch(console.log);
     } else if (endGame) {
       this.props.navigation.push("EndGameScreen", {
@@ -139,12 +139,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     padding: 5,
     backgroundColor: "skyblue",
-    opacity: 0.6
+    opacity: 0.6,
+    fontFamily: "Raleway-Light"
   },
   button: {
     fontSize: 30,
     marginTop: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
+    fontFamily: "Raleway-Regular"
   }
 });
 export default RoundResult;

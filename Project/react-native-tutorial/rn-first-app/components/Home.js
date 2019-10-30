@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
-import { StyleSheet, ImageBackground, View, Image, TouchableOpacity, Text } from "react-native";
+import {
+  StyleSheet,
+  ImageBackground,
+  View,
+  Image,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import axios from "axios";
 import { convertArea } from "geolib";
-
 
 class Home extends Component {
   state = {
@@ -11,13 +17,23 @@ class Home extends Component {
   };
   render() {
     return (
-
-      <ImageBackground source={require("../assets/background-home.jpg")} style={styles.container} >
+      <ImageBackground
+        source={require("../assets/background-home.jpg")}
+        style={styles.container}
+      >
         <View style={styles.container}>
-          <Image source={require("../assets/logo-transparent.png")} style={styles.img} />
-          <TouchableOpacity onPress={this.handleCreateGame} ><Text style={styles.create}>Create Game</Text></TouchableOpacity>
-          <TouchableOpacity onPress={this.handleJoinGame} ><Text style={styles.join}>Join Game</Text></TouchableOpacity>
-        </View></ImageBackground >
+          <Image
+            source={require("../assets/logo-transparent.png")}
+            style={styles.img}
+          />
+          <TouchableOpacity onPress={this.handleCreateGame}>
+            <Text style={styles.create}>Create Game</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.handleJoinGame}>
+            <Text style={styles.join}>Join Game</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 
@@ -51,7 +67,7 @@ const styles = StyleSheet.create({
   img: {
     width: 350,
     height: 350,
-    resizeMode: 'contain'
+    resizeMode: "contain"
   },
   create: {
     fontSize: 30,
@@ -59,7 +75,8 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     borderRadius: 10,
     overflow: "hidden",
-    padding: 10
+    padding: 10,
+    fontFamily: "Raleway-Regular"
   },
   join: {
     fontSize: 30,
@@ -68,7 +85,8 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     borderRadius: 10,
     overflow: "hidden",
-    padding: 10
+    padding: 10,
+    fontFamily: "Raleway-Regular"
   }
 });
 
