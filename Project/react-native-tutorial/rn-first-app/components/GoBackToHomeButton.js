@@ -12,7 +12,7 @@ class GoBackToHomeButton extends Component {
   handlePress = () => {
     const pin = this.props.navigation.getParam("pin");
     axios
-      .post("http://192.168.230.192:5000/delete_game", {
+      .post("https://streetclue1.herokuapp.com/delete_game", {
         pin: pin
       })
       .then(() => {

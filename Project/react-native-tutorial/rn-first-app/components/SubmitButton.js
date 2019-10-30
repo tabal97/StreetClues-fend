@@ -54,7 +54,7 @@ class SubmitButton extends Component {
       }
 
       axios
-        .post("http://192.168.230.192:5000/update_score", {
+        .post("https://streetclue1.herokuapp.com/update_score", {
           pin: pin,
           name: name,
           score
@@ -112,7 +112,7 @@ class SubmitButton extends Component {
     }
 
     axios
-      .post("http://192.168.230.192:5000/update_score", {
+      .post("https://streetclue1.herokuapp.com/update_score", {
         pin: pin,
         name: name,
         score: score

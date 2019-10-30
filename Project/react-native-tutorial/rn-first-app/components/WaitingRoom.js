@@ -14,8 +14,8 @@ class WaitingRoom extends Component {
       host: false
     };
 
-    this.pusher = new Pusher("e997856aae5ff49795fd", {
-      cluster: "eu",
+    this.pusher = new Pusher("0c067d9d3a75d2722d94", {
+      cluster: "mt1",
       forceTLS: true
     });
 
@@ -78,7 +78,7 @@ class WaitingRoom extends Component {
     const pin = this.props.navigation.getParam("pin");
     const host = this.props.navigation.getParam("host");
     axios
-      .post("http://192.168.230.192:5000/get_players", { pin: pin })
+      .post("https://streetclue1.herokuapp.com/get_players", { pin: pin })
       .then(({ data }) => {
         this.setState({ users: data.players, host });
       })
@@ -98,7 +98,7 @@ class WaitingRoom extends Component {
     const targetLocation = this.props.navigation.getParam("targetLocation");
     if (initialStart) {
       axios
-        .post("http://192.168.230.192:5000/start_game", { pin: pin })
+        .post("https://streetclue1.herokuapp.com/start_game", { pin: pin })
         .then(({ data }) => {})
         .catch(console.log);
     } else {

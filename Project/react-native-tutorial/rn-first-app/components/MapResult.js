@@ -80,6 +80,8 @@ export default class MapResult extends Component {
               latitude: parseFloat(targetLatitude),
               longitude: parseFloat(targetLongitude)
             }}
+            image={require("../assets/marker.png")}
+            style={{ width: 10, height: 10 }}
           />
         </MapView>
       </View>
