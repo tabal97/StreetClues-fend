@@ -42,7 +42,7 @@ class SubmitButton extends Component {
       let score = 0;
       if (this.props.navigation.state.routes[1].params.coordinate) {
         latitude = this.props.navigation.state.routes[1].params.coordinate
-          .longitude;
+          .latitude;
         longitude = this.props.navigation.state.routes[1].params.coordinate
           .longitude;
         score = util.calculateScore(
@@ -100,7 +100,7 @@ class SubmitButton extends Component {
     let score = 0;
     if (this.props.navigation.state.routes[1].params.coordinate) {
       latitude = this.props.navigation.state.routes[1].params.coordinate
-        .longitude;
+        .latitude;
       longitude = this.props.navigation.state.routes[1].params.coordinate
         .longitude;
       score = util.calculateScore(
