@@ -13,10 +13,9 @@
             <rect key="frame" x="0.0" y="0.0" width="416" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="StreetClue Logo (3).png" translatesAutoresizingMaskIntoConstraints="NO" id="wTm-Y1-KiA">
-                    <rect key="frame" x="11" y="-74" width="416" height="480"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="opI-T9-GGX">
+                    <rect key="frame" x="0.0" y="-580" width="416" height="1500"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -26,6 +25,6 @@
         </view>
     </objects>
     <resources>
-        <image name="StreetClue Logo (3).png" width="1125" height="1125"/>
+        <image name="logo-transparent" width="1500" height="1500"/>
     </resources>
 </document>
