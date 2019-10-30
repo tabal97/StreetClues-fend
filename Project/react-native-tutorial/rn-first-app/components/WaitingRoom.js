@@ -61,10 +61,15 @@ class WaitingRoom extends Component {
           );
         })}
         {host && (
-          <TouchableOpacity onPress={() => this.handleGameStart(true)} ><Text style={styles.button}>Start Game</Text></TouchableOpacity>
-
+          <TouchableOpacity onPress={() => this.handleGameStart(true)}>
+            <Text style={styles.button}>Start Game</Text>
+          </TouchableOpacity>
         )}
-        {!host && (<TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.button}>Leave Game</Text></TouchableOpacity>)}
+        {!host && (
+          <TouchableOpacity onPress={this.handleLeaveGame}>
+            <Text style={styles.button}>Leave Game</Text>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
@@ -94,7 +99,7 @@ class WaitingRoom extends Component {
     if (initialStart) {
       axios
         .post("http://192.168.230.192:5000/start_game", { pin: pin })
-        .then(({ data }) => { })
+        .then(({ data }) => {})
         .catch(console.log);
     } else {
       this.props.navigation.navigate("TabNavigator", {
@@ -132,7 +137,6 @@ class WaitingRoom extends Component {
         this.setState({ users: data.players });
       })
       .catch(console.log);
-
   };
 }
 const styles = StyleSheet.create({
@@ -144,14 +148,16 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 50,
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    fontFamily: "Raleway-SemiBold"
   },
   pin: {
     fontSize: 40,
-    fontWeight: "bold"
+    fontFamily: "Raleway-MediumItalic"
   },
   playersList: {
-    fontSize: 35
+    fontSize: 35,
+    fontFamily: "Raleway-Regular"
   },
   button: {
     fontSize: 30,
@@ -160,7 +166,8 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     borderRadius: 10,
     overflow: "hidden",
-    padding: 10
+    padding: 10,
+    fontFamily: "Raleway-Regular"
   }
 });
 

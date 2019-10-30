@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import StreetView from "react-native-streetview";
-import BufferScreen from "./BufferScreen";
 
 class StreetViewer extends Component {
   render() {

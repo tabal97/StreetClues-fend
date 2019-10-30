@@ -35,16 +35,22 @@ class EndGameScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.header}>{`Final Scores`} </Text>
         {this.state.finalScores.map(user => {
-          return <Text key={user} style={styles.scoreList}>{user}</Text>;
+          return (
+            <Text key={user} style={styles.scoreList}>
+              {user}
+            </Text>
+          );
         })}
-        <TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.leave}>Leave Game</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.handleLeaveGame}>
+          <Text style={styles.leave}>Leave Game</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 
   handleLeaveGame = () => {
-    this.props.navigation.push("Home")
-  }
+    this.props.navigation.push("Home");
+  };
 
   handleFinalResults = scores => {
     let playerScoresArray = [];
@@ -76,10 +82,12 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 50,
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    fontFamily: "Raleway-SemiBold"
   },
   scoreList: {
-    fontSize: 35
+    fontSize: 35,
+    fontFamily: "Raleway-Regular"
   },
   leave: {
     fontSize: 30,
@@ -88,7 +96,8 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     borderRadius: 10,
     overflow: "hidden",
-    padding: 10
+    padding: 10,
+    fontFamily: "Raleway-Regular"
   }
 });
 

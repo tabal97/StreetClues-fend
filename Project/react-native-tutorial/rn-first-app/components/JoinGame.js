@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, KeyboardAvoidingView, TouchableOpacity, TextInput, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  TextInput,
+  ImageBackground
+} from "react-native";
 import axios from "axios";
 
 class JoinGame extends Component {
@@ -27,8 +34,12 @@ class JoinGame extends Component {
           onChangeText={this.handlePinChange}
           value={enteredPin}
         />
-        <TouchableOpacity onPress={this.handleJoinGame} disabled={!name || enteredPin.length !== 4}><Text style={styles.button}>Join</Text></TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={this.handleJoinGame}
+          disabled={!name || enteredPin.length !== 4}
+        >
+          <Text style={styles.button}>Join</Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     );
   }
@@ -71,7 +82,8 @@ const styles = StyleSheet.create({
     padding: 3,
     margin: 3,
     borderRadius: 20,
-    backgroundColor: "whitesmoke"
+    backgroundColor: "whitesmoke",
+    fontFamily: "Raleway-Regular"
   },
   header: {
     backgroundColor: "whitesmoke",
@@ -79,7 +91,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 50,
     opacity: 0.8,
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    fontFamily: "Raleway-SemiBold"
   },
   button: {
     fontSize: 30,
@@ -88,7 +101,8 @@ const styles = StyleSheet.create({
     marginBottom: 250,
     borderRadius: 10,
     overflow: "hidden",
-    padding: 10
+    padding: 10,
+    fontFamily: "Raleway-Regular"
   }
 });
 
