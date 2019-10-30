@@ -63,7 +63,7 @@ class WaitingRoom extends Component {
         {host && (
           <TouchableOpacity onPress={() => this.handleGameStart(true)} ><Text style={styles.button}>Start Game</Text></TouchableOpacity>
         )}
-        <TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.button}>Leave Game</Text></TouchableOpacity>
+        {!host && (<TouchableOpacity onPress={this.handleLeaveGame} ><Text style={styles.button}>Leave Game</Text></TouchableOpacity>)}
       </View>
     );
   }
