@@ -20,18 +20,23 @@ class CreateGame extends Component {
   render() {
     const { name } = this.state;
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Text style={styles.header}>Create Game</Text>
-        <TextInput
-          placeholder="Enter Nickname"
-          style={styles.inputBox}
-          onChangeText={this.handleNameChange}
-          value={name}
-        />
-        <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}>
-          <Text style={styles.button}>Create</Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+      <ImageBackground
+        source={require("../assets/background-home-blur.jpg")}
+        style={styles.container}
+      >
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+          <Text style={styles.header}>Create Game</Text>
+          <TextInput
+            placeholder="Enter Nickname"
+            style={styles.inputBox}
+            onChangeText={this.handleNameChange}
+            value={name}
+          />
+          <TouchableOpacity onPress={this.handleCreateGame} disabled={!name}>
+            <Text style={styles.button}>Create</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     );
   }
 
@@ -61,8 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "skyblue"
+    justifyContent: "space-between"
   },
   inputBox: {
     height: 50,
@@ -76,10 +80,9 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "whitesmoke",
     padding: 10,
-    marginTop: 10,
+    marginTop: 70,
     fontSize: 50,
     opacity: 0.8,
-    textDecorationLine: "underline",
     fontFamily: "Raleway-SemiBold",
     borderRadius: 10,
     overflow: "hidden"

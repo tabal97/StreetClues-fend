@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground
+} from "react-native";
 import Pusher from "pusher-js/react-native";
 import axios from "axios";
-import { StackActions, NavigationActions } from "react-navigation";
 
 //get a request for all the already joined users
 class WaitingRoom extends Component {
@@ -51,26 +56,31 @@ class WaitingRoom extends Component {
     const { host } = this.state;
     const { users } = this.state;
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Waiting Room</Text>
-        <Text style={styles.pin}>{`Room Pin: ${pin}`}</Text>
-        {users.map((user, i) => {
-          return (
-            <Text style={styles.playersList} key={user}>{`Player ${i +
-              1}: ${user}`}</Text>
-          );
-        })}
-        {host && (
-          <TouchableOpacity onPress={() => this.handleGameStart(true)}>
-            <Text style={styles.button}>Start Game</Text>
-          </TouchableOpacity>
-        )}
-        {!host && (
-          <TouchableOpacity onPress={this.handleLeaveGame}>
-            <Text style={styles.button}>Leave Game</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+      <ImageBackground
+        source={require("../assets/background-home-blur.jpg")}
+        style={styles.container}
+      >
+        <View style={styles.container}>
+          <Text style={styles.header}>Waiting Room</Text>
+          <Text style={styles.pin}>{`Room Pin: ${pin}`}</Text>
+          {users.map((user, i) => {
+            return (
+              <Text style={styles.playersList} key={user}>{`Player ${i +
+                1}: ${user}`}</Text>
+            );
+          })}
+          {host && (
+            <TouchableOpacity onPress={() => this.handleGameStart(true)}>
+              <Text style={styles.button}>Start Game</Text>
+            </TouchableOpacity>
+          )}
+          {!host && (
+            <TouchableOpacity onPress={this.handleLeaveGame}>
+              <Text style={styles.button}>Leave Game</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </ImageBackground>
     );
   }
   componentDidMount() {
@@ -113,7 +123,6 @@ class WaitingRoom extends Component {
   handleLeaveGame = () => {
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
-    const host = this.props.navigation.getParam("host");
     this.pusher.unsubscribe(pin);
 
     axios
@@ -142,21 +151,35 @@ class WaitingRoom extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "skyblue",
     alignItems: "center",
     justifyContent: "space-evenly"
   },
   header: {
+    backgroundColor: "whitesmoke",
+    padding: 10,
+    marginTop: 10,
     fontSize: 50,
-    textDecorationLine: "underline",
+    opacity: 0.8,
+    borderRadius: 10,
+    overflow: "hidden",
     fontFamily: "Raleway-SemiBold"
   },
   pin: {
-    fontSize: 40,
+    backgroundColor: "whitesmoke",
+    padding: 10,
+    opacity: 0.8,
+    borderRadius: 10,
+    overflow: "hidden",
+    fontSize: 30,
     fontFamily: "Raleway-MediumItalic"
   },
   playersList: {
-    fontSize: 35,
+    backgroundColor: "whitesmoke",
+    padding: 5,
+    opacity: 0.8,
+    borderRadius: 20,
+    overflow: "hidden",
+    fontSize: 25,
     fontFamily: "Raleway-Regular"
   },
   button: {

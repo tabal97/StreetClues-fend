@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
-import { Button } from "react-native";
+import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import axios from "axios";
 class GoBackToHomeButton extends Component {
-  state = {};
-
   render() {
-    return <Button onPress={this.handlePress} title="< Back" />;
+    return (
+      <TouchableOpacity onPress={this.handlePress}>
+        <Text style={styles.text}>Back</Text>
+      </TouchableOpacity>
+    );
   }
 
   handlePress = () => {
@@ -16,10 +18,21 @@ class GoBackToHomeButton extends Component {
         pin: pin
       })
       .then(() => {
-        console.log("this works");
         this.props.navigation.navigate("Home");
-      });
+      })
+      .catch(this.props.navigation.navigate("Home"));
   };
 }
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+    backgroundColor: "whitesmoke",
+    opacity: 0.8,
+    borderRadius: 10,
+    overflow: "hidden",
+    padding: 5,
+    marginLeft: 10
+  }
+});
 
 export default withNavigation(GoBackToHomeButton);
