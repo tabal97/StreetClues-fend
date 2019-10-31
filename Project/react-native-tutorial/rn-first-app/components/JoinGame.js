@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
     fontSize: 50,
     opacity: 0.8,
     textDecorationLine: "underline",
-    fontFamily: "Raleway-SemiBold"
+    fontFamily: "Raleway-SemiBold",
+    borderRadius: 10,
+    overflow: "hidden"
   },
   button: {
     fontSize: 30,
