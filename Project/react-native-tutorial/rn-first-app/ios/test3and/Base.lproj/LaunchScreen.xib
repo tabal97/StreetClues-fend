@@ -9,22 +9,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="416" height="480"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="opI-T9-GGX">
-                    <rect key="frame" x="5" y="-510" width="416" height="1500"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="logo-transparent" translatesAutoresizingMaskIntoConstraints="NO" id="ShR-cv-f51">
+                    <rect key="frame" x="9" y="86.5" width="302" height="395"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ShR-cv-f51" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PW6-Al-CKX"/>
+                <constraint firstItem="ShR-cv-f51" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R9M-NH-ZxU"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="594.20289855072474" y="454.6875"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="592.5" y="454.22535211267603"/>
         </view>
     </objects>
     <resources>
-        <image name="logo-transparent" width="1500" height="1500"/>
+        <image name="logo-transparent" width="302" height="395"/>
     </resources>
 </document>

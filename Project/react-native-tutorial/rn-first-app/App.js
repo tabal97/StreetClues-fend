@@ -14,27 +14,22 @@ import GoBackToHomeButton from "./components/GoBackToHomeButton";
 import { createAppContainer, NavigationEvents } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
-import Icon from "react-native-vector-icons/Ionicons"
+import Icon from "react-native-vector-icons/Ionicons";
 
-
-const TabNavigator = createBottomTabNavigator(
-  {
-    StreetViewer: {
-      screen: StreetViewer,
-      navigationOptions: {
-        tabBarIcon: () => (
-          <Icon name="ios-navigate" size={24} />
-        )
-      }
-    }, Map: {
-      screen: Map,
-      navigationOptions: {
-        tabBarIcon: () => (
-          <Icon name="ios-globe" size={24} />
-        )
-      }
+const TabNavigator = createBottomTabNavigator({
+  StreetViewer: {
+    screen: StreetViewer,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="ios-navigate" size={24} />
     }
-  });
+  },
+  Map: {
+    screen: Map,
+    navigationOptions: {
+      tabBarIcon: () => <Icon name="ios-globe" size={24} />
+    }
+  }
+});
 
 const RootStack = createStackNavigator({
   Home: {

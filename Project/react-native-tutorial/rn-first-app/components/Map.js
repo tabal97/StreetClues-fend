@@ -51,14 +51,6 @@ export default class Map extends Component {
             />
           ))}
         </MapView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.setState({ markers: [] })}
-            style={styles.bubble}
-          >
-            <Text>Tap to create a marker of random color</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
@@ -95,8 +87,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   mapStyle: {
-    width,
-    height
+    width: "100%",
+    height: "100%"
   },
   buttonContainer: {
     flexDirection: "row",
