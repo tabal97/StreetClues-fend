@@ -1,29 +1,25 @@
 import React, { Component } from "react";
 import { withNavigation } from "react-navigation";
-import { Button } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import axios from "axios";
 import * as util from "../utils/ScoreCalculator";
+import Icon from "react-native-vector-icons/Ionicons";
 
 class SubmitButton extends Component {
   state = {
-    submitted: false,
-    disabled: true
+    submitted: false
   };
 
   render() {
-    const { disabled } = this.state;
     return (
-      <Button onPress={this.handleSubmit} title="submit" disabled={disabled} />
+      <TouchableOpacity onPress={this.handleSubmit}>
+        <Icon style={styles.submit} name="ios-checkmark-circle" size={30} />
+      </TouchableOpacity>
     );
   }
   componentDidMount() {
-    window.setTimeout(this.handleTimeOut, 65000);
-    window.setTimeout(this.enableButton, 5000);
+    window.setTimeout(this.handleTimeOut, 60000);
   }
-
-  enableButton = () => {
-    this.setState({ disabled: false });
-  };
 
   handleTimeOut = () => {
     const { submitted } = this.state;
@@ -54,7 +50,7 @@ class SubmitButton extends Component {
       }
 
       axios
-        .post("https://streetclue1.herokuapp.com/update_score", {
+        .post("HTTP://192.168.230.192:5000/update_score", {
           pin: pin,
           name: name,
           score
@@ -112,7 +108,7 @@ class SubmitButton extends Component {
     }
 
     axios
-      .post("https://streetclue1.herokuapp.com/update_score", {
+      .post("HTTP://192.168.230.192:5000/update_score", {
         pin: pin,
         name: name,
         score: score
@@ -142,5 +138,11 @@ class SubmitButton extends Component {
       .catch(console.log);
   };
 }
+
+const styles = StyleSheet.create({
+  submit: {
+    paddingRight: 15
+  }
+});
 
 export default withNavigation(SubmitButton);

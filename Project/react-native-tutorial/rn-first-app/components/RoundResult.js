@@ -14,8 +14,8 @@ class RoundResult extends Component {
       host: null
     };
 
-    this.pusher = new Pusher("0c067d9d3a75d2722d94", {
-      cluster: "mt1",
+    this.pusher = new Pusher("e997856aae5ff49795fd", {
+      cluster: "eu",
       forceTLS: true
     });
 
@@ -89,7 +89,7 @@ class RoundResult extends Component {
 
     if (initialStart) {
       axios
-        .post("https://streetclue1.herokuapp.com/next_round", { pin: pin })
+        .post("HTTP://192.168.230.192:5000/next_round", { pin: pin })
         .then(({ data }) => {})
         .catch(console.log);
     } else if (endGame) {

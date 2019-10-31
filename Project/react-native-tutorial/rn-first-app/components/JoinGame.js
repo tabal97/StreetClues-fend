@@ -21,7 +21,7 @@ class JoinGame extends Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Join Game</Text>
         <TextInput
-          placeholder="Enter Name"
+          placeholder="Enter Nickname"
           style={styles.inputBox}
           onChangeText={this.handleNameChange}
           value={name}
@@ -52,7 +52,7 @@ class JoinGame extends Component {
 
   handleJoinGame = () => {
     axios
-      .post("https://streetclue1.herokuapp.com/add_player", {
+      .post("HTTP://192.168.230.192:5000/add_player", {
         name: this.state.name,
         pin: this.state.enteredPin
       })

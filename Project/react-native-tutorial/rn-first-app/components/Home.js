@@ -39,7 +39,7 @@ class Home extends Component {
 
   handleCreateGame = () => {
     axios
-      .get("https://streetclue1.herokuapp.com/create_game")
+      .get("HTTP://192.168.230.192:5000/create_game")
       .then(({ data }) => {
         this.setState({ pin: data.pin });
 

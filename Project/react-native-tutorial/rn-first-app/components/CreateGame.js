@@ -23,7 +23,7 @@ class CreateGame extends Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={styles.header}>Create Game</Text>
         <TextInput
-          placeholder="Enter Name"
+          placeholder="Enter Nickname"
           style={styles.inputBox}
           onChangeText={this.handleNameChange}
           value={name}
@@ -44,7 +44,7 @@ class CreateGame extends Component {
     const pin = this.props.navigation.getParam("pin");
     // this.props.navigation.setParams({ params: { currentRound: 1 }, key: "currentRound" });
     axios
-      .post("https://streetclue1.herokuapp.com/add_player", { name, pin })
+      .post("HTTP://192.168.230.192:5000/add_player", { name, pin })
       .then(({ data }) => {
         this.props.navigation.navigate("WaitingRoom", {
           name,
