@@ -50,7 +50,9 @@ class RoundResult extends Component {
           targetLatitude={targetLatitude}
           targetLongitude={targetLongitude}
         />
-        <Text style={styles.text}>{`End of Round ${nextRound}`} </Text>
+        <Text style={styles.text}>
+          {`End of Round ${nextRound === "none" ? 3 : nextRound}`}{" "}
+        </Text>
         <Text style={styles.text}>{`Score: ${score}`} </Text>
         {host && everyoneAnswered && (
           <TouchableOpacity
@@ -140,7 +142,9 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "skyblue",
     opacity: 0.6,
-    fontFamily: "Raleway-Light"
+    fontFamily: "Raleway-Light",
+    borderRadius: 10,
+    overflow: "hidden"
   },
   button: {
     fontSize: 30,

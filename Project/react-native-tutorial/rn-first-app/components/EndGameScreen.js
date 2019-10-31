@@ -49,7 +49,7 @@ class EndGameScreen extends Component {
   }
 
   handleLeaveGame = () => {
-    this.props.navigation.push("Home");
+    this.props.navigation.navigate("Home");
   };
 
   handleFinalResults = scores => {
