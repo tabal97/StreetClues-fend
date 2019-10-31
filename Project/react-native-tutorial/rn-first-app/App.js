@@ -43,10 +43,18 @@ const RootStack = createStackNavigator({
     screen: CreateGame,
     navigationOptions: {
       headerLeft: <GoBackToHomeButton />,
-      gesturesEnabled: false
+      gesturesEnabled: false,
+      headerTransparent: true
     }
   },
-  JoinGame,
+  JoinGame: {
+    screen: JoinGame,
+    navigationOptions: {
+      headerLeft: <GoBackToHomeButton />,
+      gesturesEnabled: false,
+      headerTransparent: true
+    }
+  },
   WaitingRoom: {
     screen: WaitingRoom,
     navigationOptions: {
@@ -71,9 +79,10 @@ const RootStack = createStackNavigator({
   TabNavigator: {
     screen: TabNavigator,
     navigationOptions: {
+      gesturesEnabled: false,
       headerLeft: () => <Timer />,
       headerRight: () => <SubmitButton />,
-      gesturesEnabled: false
+      headerTransparent: true
     }
   }
 });

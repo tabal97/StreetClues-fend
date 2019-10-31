@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground
+} from "react-native";
 import Pusher from "pusher-js/react-native";
 
 class EndGameScreen extends Component {
@@ -30,21 +36,25 @@ class EndGameScreen extends Component {
   }
 
   render() {
-    const name = this.props.navigation.getParam("name");
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>{`Final Scores`} </Text>
-        {this.state.finalScores.map(user => {
-          return (
-            <Text key={user} style={styles.scoreList}>
-              {user}
-            </Text>
-          );
-        })}
-        <TouchableOpacity onPress={this.handleLeaveGame}>
-          <Text style={styles.leave}>Leave Game</Text>
-        </TouchableOpacity>
-      </View>
+      <ImageBackground
+        source={require("../assets/background-end.jpg")}
+        style={styles.container}
+      >
+        <View style={styles.container}>
+          <Text style={styles.header}>{`Final Scores`} </Text>
+          {this.state.finalScores.map(user => {
+            return (
+              <Text key={user} style={styles.scoreList}>
+                {user}
+              </Text>
+            );
+          })}
+          <TouchableOpacity onPress={this.handleLeaveGame}>
+            <Text style={styles.leave}>Leave Game</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 
@@ -76,17 +86,26 @@ class EndGameScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "skyblue",
     alignItems: "center",
     justifyContent: "space-evenly"
   },
   header: {
+    backgroundColor: "whitesmoke",
+    padding: 10,
+    marginTop: 10,
     fontSize: 50,
-    textDecorationLine: "underline",
+    opacity: 0.8,
+    borderRadius: 10,
+    overflow: "hidden",
     fontFamily: "Raleway-SemiBold"
   },
   scoreList: {
-    fontSize: 35,
+    backgroundColor: "whitesmoke",
+    padding: 5,
+    opacity: 0.8,
+    borderRadius: 20,
+    overflow: "hidden",
+    fontSize: 30,
     fontFamily: "Raleway-Regular"
   },
   leave: {
