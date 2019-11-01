@@ -30,6 +30,7 @@ class SubmitButton extends Component {
       const name = this.props.navigation.getParam("name");
       const pin = this.props.navigation.getParam("pin");
       const host = this.props.navigation.getParam("host");
+      const player_id = this.props.navigation.getParam("player_id");
 
       const targetLatitude = targetLocation[0];
       const targetLongitude = targetLocation[1];
@@ -50,10 +51,11 @@ class SubmitButton extends Component {
       }
 
       axios
-        .post("HTTP://192.168.230.192:5000/update_score", {
+        .post("https://streetclue1.herokuapp.com/update_score", {
           pin: pin,
           name: name,
-          score
+          score,
+          player_id
         })
         .then(({ data }) => {
           let endRound = false;
@@ -80,7 +82,6 @@ class SubmitButton extends Component {
     }
   };
   handleSubmit = () => {
-    console.log("ran");
     this.setState({ submitted: true });
     const targetLocation = this.props.navigation.state.routes[1].params
       .targetLocation;
@@ -88,6 +89,7 @@ class SubmitButton extends Component {
     const name = this.props.navigation.getParam("name");
     const pin = this.props.navigation.getParam("pin");
     const host = this.props.navigation.getParam("host");
+    const player_id = this.props.navigation.getParam("player_id");
 
     const targetLatitude = targetLocation[0];
     const targetLongitude = targetLocation[1];
@@ -108,10 +110,11 @@ class SubmitButton extends Component {
     }
 
     axios
-      .post("HTTP://192.168.230.192:5000/update_score", {
+      .post("https://streetclue1.herokuapp.com/update_score", {
         pin: pin,
         name: name,
-        score: score
+        score: score,
+        player_id
       })
       .then(({ data }) => {
         let endRound = false;
@@ -132,7 +135,8 @@ class SubmitButton extends Component {
           targetLatitude,
           targetLongitude,
           endGame: data.endGame,
-          endRound: endRound
+          endRound: endRound,
+          player_id
         });
       })
       .catch(console.log);

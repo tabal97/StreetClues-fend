@@ -14,21 +14,25 @@ class RoundResult extends Component {
       host: null
     };
 
-    this.pusher = new Pusher("e997856aae5ff49795fd", {
-      cluster: "eu",
+    this.pusher = new Pusher("0c067d9d3a75d2722d94", {
+      cluster: "mt1",
       forceTLS: true
     });
 
     const pin = this.props.navigation.getParam("pin");
-    this.channel = this.pusher.subscribe(pin);
+    this.channel = this.pusher.subscribe(pin.toString());
     this.channel.bind("pusher:subscription_succeeded", () => {
       this.channel.bind("nextRound", data => {
-        this.handleNextRound();
+        console.log("next round listener");
+        this.handleNextRound(false);
       });
       this.channel.bind("endRound", data => {
+        console.log("end round");
         this.setState({ everyoneAnswered: true });
       });
       this.channel.bind("endGame", data => {
+        console.log(data.message);
+
         this.handleFinalResults(data.message);
       });
     });
@@ -81,30 +85,38 @@ class RoundResult extends Component {
     const pin = this.props.navigation.getParam("pin");
     const name = this.props.navigation.getParam("name");
     // const targetLocation = targetLocations[3];
+    const player_id = this.props.navigation.getParam("player_id");
     const nextLat = this.props.navigation.getParam("nextLat");
     const nextLong = this.props.navigation.getParam("nextLong");
     const endGame = this.props.navigation.getParam("endGame");
 
     this.setState({ everyoneAnswered: false });
     finalScores = this.state.finalScores;
-    // console.log(finalScores);
-
+    console.log(endGame, "end game");
+    console.log(initialStart, "initial start");
+    console.log("1");
     if (initialStart) {
+      console.log("2");
       axios
-        .post("HTTP://192.168.230.192:5000/next_round", { pin: pin })
-        .then(({ data }) => {})
+        .post("https://streetclue1.herokuapp.com/next_round", { pin: pin })
+        .then(({ data }) => {
+          console.log("hit the next round end point");
+        })
         .catch(console.log);
     } else if (endGame) {
       this.props.navigation.push("EndGameScreen", {
         name,
         pin,
-        finalScores
+        finalScores,
+        player_id
       });
     } else {
+      console.log("3");
       this.props.navigation.push("TabNavigator", {
         name,
         pin,
-        targetLocation: [nextLat, nextLong]
+        targetLocation: [nextLat, nextLong],
+        player_id
       });
     }
   };
