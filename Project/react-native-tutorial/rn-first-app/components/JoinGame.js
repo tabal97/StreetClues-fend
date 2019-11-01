@@ -57,7 +57,7 @@ class JoinGame extends Component {
 
   handleJoinGame = () => {
     axios
-      .post("HTTP://192.168.230.192:5000/add_player", {
+      .post("https://streetclue1.herokuapp.com/add_player", {
         name: this.state.name,
         pin: this.state.enteredPin
       })
@@ -66,7 +66,8 @@ class JoinGame extends Component {
           name: this.state.name,
           pin: this.state.enteredPin,
           targetLocation: data.locations,
-          host: false
+          host: false,
+          player_id: data.player_id
         });
       });
   };

@@ -49,11 +49,12 @@ class CreateGame extends Component {
     const pin = this.props.navigation.getParam("pin");
     // this.props.navigation.setParams({ params: { currentRound: 1 }, key: "currentRound" });
     axios
-      .post("HTTP://192.168.230.192:5000/add_player", { name, pin })
+      .post("https://streetclue1.herokuapp.com/add_player", { name, pin })
       .then(({ data }) => {
         this.props.navigation.navigate("WaitingRoom", {
           name,
           pin,
+          player_id: data.player_id,
           targetLocation: data.locations,
           host
         });

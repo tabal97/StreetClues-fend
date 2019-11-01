@@ -20,8 +20,8 @@ class EndGameScreen extends Component {
       finalScores: finalScores
     };
 
-    this.pusher = new Pusher("e997856aae5ff49795fd", {
-      cluster: "eu",
+    this.pusher = new Pusher("0c067d9d3a75d2722d94", {
+      cluster: "mt1",
       forceTLS: true
     });
 

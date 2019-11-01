@@ -48,7 +48,7 @@ export default class MapResult extends Component {
         longitude: parseFloat(targetLongitude)
       }
     ]);
-    console.log(midPoint);
+    // console.log(midPoint);
     return (
       <View style={styles.container}>
         <MapView
